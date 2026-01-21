@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!-- saved from url=(0149)https://www.westlakepipe.com/media/oembed?url=https%3A//vimeo.com/704563595&max_width=0&max_height=0&hash=1gvnek5e8L3Wo38JjaJI16Y7ygROhzPLxZFBVROlSGs -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" media="all" href="./css_zHokkLz1R9krCqZNaWYFgdvkG0eUySBFp3rISQu7v34.css">
+
+  </head>
+  <body style="margin: 0">
+    <iframe src="./704563595.html" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="A Better Foundation (1:16) | Westlake Pipe &amp; Fittings"></iframe>
+    <script>
+      // Message handler to pause video
+      window.onmessage = (event) => {
+        if (!event.data || !(typeof event.data === 'string' || event.data instanceof String)) return;
+
+        let data;
+        try {
+          data = JSON.parse(event.data);
+        } catch (error) {
+          return;
+        }
+
+        let command;
+
+        // Create custom pause command per provider
+        if (data && data.provider) {
+          switch (data.provider) {
+            case 'Vimeo':
+              if (data.method === 'pause') {
+                command = {
+                  "method": "pause",
+                  "value": "true"
+                };
+              } else if (data.method === 'play') {
+                command = {
+                  "method": "play",
+                  "value": "true"
+                };
+              }
+              break;
+            case 'YouTube':
+              if (data.method === 'pause') {
+                command = {
+                  "event": "command",
+                  "func": "pauseVideo"
+                };
+              } else if (data.method === 'play') {
+                command = {
+                  "event": "command",
+                  "func": "playVideo"
+                };
+              }
+              break;
+          }
+
+          if (command) {
+            //Debug messaging
+            //console.log(data.provider, command);
+
+            // Send command to provider iframe
+            document.querySelector('iframe').contentWindow.postMessage(JSON.stringify(command), "*");
+          }
+        }
+      };
+    </script>
+  
+
+</body></html>

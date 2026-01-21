@@ -1,0 +1,120 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme {
+  --font-open-sans: "Open Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-oswald: "Oswald", ui-sans-serif, system-ui, sans-serif;
+  --font-geist-sans: var(--font-geist-sans);
+  --font-geist-mono: var(--font-geist-mono);
+}
+
+@layer base {
+  body {
+    @apply overflow-x-hidden;
+  }
+  h1 {
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold;
+  }
+  h2 {
+    @apply text-2xl sm:text-3xl md:text-4xl font-bold uppercase mb-3 leading-tight;
+  }
+  p {
+    @apply text-gray-700 text-sm md:text-base leading-relaxed;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply py-8 md:py-10 lg:py-14;
+  }
+  .section-box {
+    @apply text-center mb-8 sm:mb-12;
+  }
+  .section-content {
+    @apply space-y-5;
+  }
+  .btn-primary {
+    @apply border-2 border-[#00a35a] text-[#00a35a] hover:bg-[#00a35a] hover:text-white text-xs px-4 py-1.5 h-9 cursor-pointer;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 cursor-pointer;
+  }
+  .btn-green {
+    @apply mt-2 sm:mt-4 bg-[#00a35a] hover:bg-[rgba(0,163,90,0.9)] text-white font-semibold px-6 sm:px-8 py-3 rounded transition-colors duration-200 inline-flex items-center gap-2 cursor-pointer;
+  }
+  .paragraph {
+    @apply text-[#67737e] max-w-2xl mx-auto text-sm sm:text-base;
+  }
+}
+
+/* Container System (Tailwind v3 → Tailwind v4 Conversion) */
+@layer utilities {
+  .font-neueHaasUnica {
+    font-family: var(--font-neueHaasUnica);
+  }
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem; /* same as Tailwind container padding */
+    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      max-width: 640px; /* sm */
+    }
+  }
+
+  @media (min-width: 768px) {
+    .container {
+      max-width: 768px; /* md */
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      max-width: 1024px; /* lg */
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .container {
+      max-width: 1280px; /* xl */
+    }
+  }
+
+  @media (min-width: 1400px) {
+    .container {
+      max-width: 1400px; /* 2xl */
+    }
+  }
+
+  .location-card-shadow {
+    box-shadow: var(--location-card-shadow);
+  }
+
+  .location-card-shadow-hover {
+    box-shadow: var(--location-card-shadow-hover);
+  }
+}
+
+/* Smooth scrollbar styling */
+.locations-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.locations-scroll::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+  border-radius: 3px;
+}
+
+.locations-scroll::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 3px;
+}
+
+.locations-scroll::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
+}

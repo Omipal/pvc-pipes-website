@@ -1,0 +1,2 @@
+/* @license GPL-2.0-or-later https://www.drupal.org/licensing/faq */
+(function($,Drupal,drupalSettings){Drupal.behaviors.ammunition_segments={attach:function(context,settings){$(once('ammunition_segments','#block-ammunition-segmentselector select',context)).on('change',function(e){const tid=parseInt($(e.target).val());Drupal.ammunition.setCookie('Drupal.ammunition_segments.segment',tid,365);Drupal.ammunition.setCookie('Drupal.ammunition_segments.segmentSearchDisabled',false,365);window.location.reload();});}};})(jQuery,Drupal,drupalSettings);;
