@@ -16,14 +16,12 @@
 const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL;
 
 export async function getGlobal() {
-  const res = await fetch(`${STRAPI_URL}/api/global?populate=deep`, {
-    cache: "no-store",
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/globals?populate=deep`,
+    { cache: "no-store" },
+  );
 
-  if (!res.ok) {
-    console.error("❌ Global fetch failed:", res.status);
-    return null; // 🔥 NEVER throw in SSR
-  }
+  if (!res.ok) return null;
 
   const json = await res.json();
   return json?.data?.attributes ?? null;
