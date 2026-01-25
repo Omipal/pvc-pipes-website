@@ -63,12 +63,14 @@ export default async function RootLayout({
       <body
         className={`${openSans.variable} ${oswald.variable} ${geistSans.variable} ${geistMono.variable} font-open-sans antialiased bg-white text-[#67737e] leading-1.5`}
       >
-        <Header headerData={global.header} topnavData={global.topnav} />
+        {global && (
+          <Header headerData={global.header} topnavData={global.topnav} />
+        )}
         <BreadcrumbProvider>
           <BreadcrumbWrapper />
           <main>{children}</main>
         </BreadcrumbProvider>
-        <Footer footerData={global.footer} />
+        {global && <Footer footerData={global.footer} />}
         <ScrollToTop />
       </body>
     </html>

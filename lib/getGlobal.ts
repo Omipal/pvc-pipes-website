@@ -21,11 +21,10 @@ export async function getGlobal() {
   });
 
   if (!res.ok) {
-    throw new Error("Failed to fetch global data");
+    console.error("❌ Global fetch failed:", res.status);
+    return null; // 🔥 NEVER throw in SSR
   }
 
   const json = await res.json();
-
-  // ✅ STRAPI v5
-  return json;
+  return json?.data?.attributes ?? null;
 }
