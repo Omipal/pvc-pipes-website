@@ -10,10 +10,6 @@ import { ServicesBlock } from "@/types/services";
 export default async function HomePage() {
   const landingPage = await getLandingPage();
 
-  if (!landingPage) {
-    return null; // or error UI
-  }
-
   /* =========================
      STEP 1: Sab Section Headings collect karo
      ========================= */
