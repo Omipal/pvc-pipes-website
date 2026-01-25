@@ -8,64 +8,66 @@ import { GuaranteeBlock } from "@/types/guarantee";
 import { ServicesBlock } from "@/types/services";
 
 export default async function HomePage() {
+  // 🔵 Fetch landing page data
   const landingPage = await getLandingPage();
 
+  // ✅ FIX 3: SAFE fallback
+  const blocks = landingPage?.blocks ?? [];
+
   /* =========================
-     STEP 1: Sab Section Headings collect karo
+     Section Headings
      ========================= */
-  const sectionHeadings = landingPage.blocks?.filter(
+  const sectionHeadings = blocks.filter(
     (block): block is SectionHeadingBlock =>
-      block.__component === "blocks.section-heading"
+      block.__component === "blocks.section-heading",
   );
 
   /* =========================
-     STEP 2: Sab Card Grid blocks collect karo
+     Card Grid Blocks
      ========================= */
-  const cardGridBlocks = landingPage.blocks?.filter(
+  const cardGridBlocks = blocks.filter(
     (block): block is ApplicationsBlock =>
-      block.__component === "blocks.card-grid"
+      block.__component === "blocks.card-grid",
   );
 
   /* =========================
-     Other blocks (same as before)
+     Other blocks
      ========================= */
-  const heroBlock = landingPage.blocks?.find(
-    (block): block is HeroBlock => block.__component === "blocks.hero"
+  const heroBlock = blocks.find(
+    (block): block is HeroBlock => block.__component === "blocks.hero",
   );
 
-  const guaranteeBlock = landingPage.blocks?.find(
-    (block): block is GuaranteeBlock => block.__component === "blocks.guarantee"
+  const guaranteeBlock = blocks.find(
+    (block): block is GuaranteeBlock =>
+      block.__component === "blocks.guarantee",
   );
 
-  const servicesBlock = landingPage.blocks?.find(
-    (b): b is ServicesBlock => b.__component === "blocks.services"
+  const servicesBlock = blocks.find(
+    (block): block is ServicesBlock => block.__component === "blocks.services",
   );
 
   /* =========================
      Card grids by section_type
      ========================= */
-  const applicationsBlock = cardGridBlocks?.find(
-    (b) => b.section_type === "applications"
+  const applicationsBlock = cardGridBlocks.find(
+    (b) => b.section_type === "applications",
   );
 
-  const supportBlock = cardGridBlocks?.find(
-    (b) => b.section_type === "support"
+  const supportBlock = cardGridBlocks.find((b) => b.section_type === "support");
+
+  const performanceBlock = cardGridBlocks.find(
+    (b) => b.section_type === "performance",
   );
 
-  const performanceBlock = cardGridBlocks?.find(
-    (b) => b.section_type === "performance"
-  );
-
-  const powerBlock = cardGridBlocks?.find((b) => b.section_type === "power");
+  const powerBlock = cardGridBlocks.find((b) => b.section_type === "power");
 
   /* =========================
-     Section Headings mapping
-     (ORDER same as Strapi)
+     Section Headings (Strapi order)
      ========================= */
-  const applicationsHeading = sectionHeadings?.[0];
-  const supportHeading = sectionHeadings?.[1];
-  const performanceHeading = sectionHeadings?.[2];
-  const powerHeading = sectionHeadings?.[3];
+  const applicationsHeading = sectionHeadings[0];
+  const supportHeading = sectionHeadings[1];
+  const performanceHeading = sectionHeadings[2];
+  const powerHeading = sectionHeadings[3];
 
   return (
     <Home
