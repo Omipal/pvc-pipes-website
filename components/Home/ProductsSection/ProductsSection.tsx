@@ -1,69 +1,9 @@
 "use client";
 
 import Image from "next/image";
-
-const products = [
-  {
-    title: "PVC",
-    image: "/products/PVCpipes_0.jpg",
-    span: "col-span-1 row-span-1",
-  },
-  {
-    title: "PE",
-    image: "/products/PEcables02_0.jpg",
-    span: "col-span-1 row-span-1",
-  },
-  {
-    title: "ABS",
-    image: "/products/abs.jpg",
-    span: "col-span-1 row-span-1",
-  },
-  {
-    title: "Water/Sewer",
-    image: "/products/n_PVCwaterandsewer.jpg",
-    span: "col-span-1 row-span-1",
-  },
-  {
-    title: "Wastewater",
-    image: "/products/n_HDPEWaterandSewer.jpg",
-    span: "col-span-1 row-span-1",
-  },
-  {
-    title: "Plumbing",
-    image: "/products/plumbing_small.jpg",
-    span: "col-span-1 row-span-1",
-  },
-  {
-    title: "Storm/Drainage",
-    image: "/products/n_PVCplumbing.jpg",
-    span: "col-span-1 row-span-1",
-  },
-  {
-    title: "Irrigation",
-    image: "/products/n_PEstormDrain.jpg",
-    span: "col-span-1 row-span-1",
-  },
-  {
-    title: "Gas/Fittings",
-    image: "/products/n_PVCirrgiation.jpg",
-    span: "col-span-1 row-span-1",
-  },
-  {
-    title: "Electrical/Communications",
-    image: "/products/n_gas.jpg",
-    span: "col-span-1 row-span-1",
-  },
-  {
-    title: "Polyethylene Fittings",
-    image: "/products/n_PVCelectricalfittings.jpg",
-    span: "col-span-1 row-span-1",
-  },
-  {
-    title: "HDPE Pressure Pipe",
-    image: "/products/n_PEfittings.jpg",
-    span: "col-span-1 row-span-1",
-  },
-];
+import Link from "next/link";
+import { productData } from "@/data/products";
+const products = productData; // Declare the products variable
 
 export default function ProductsSection() {
   return (
@@ -102,25 +42,37 @@ export default function ProductsSection() {
         </div>
 
         {/* Products Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
-          {products.map((product, index) => (
-            <div
-              key={index}
-              className={`${product.span} relative overflow-hidden group cursor-pointer bg-gray-100 min-h-[150px] sm:min-h-[180px] md:min-h-[220px] rounded-lg shadow-md hover:shadow-lg transition-shadow`}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
+          {productData.slice(0, 8).map((product) => (
+            <Link
+              key={product.slug}
+              href={`/products/${product.slug}`}
+              className="relative overflow-hidden group cursor-pointer bg-gray-100 min-h-[150px] sm:min-h-[180px] md:min-h-[220px] rounded-lg shadow-md hover:shadow-lg transition-shadow"
             >
               <Image
                 src={product.image || "/placeholder.svg"}
                 alt={product.title}
                 width={800}
                 height={504}
+                className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-opacity-40 group-hover:bg-opacity-50 transition-all flex items-center justify-center">
                 <h3 className="text-white font-bold text-center px-4 text-sm sm:text-base md:text-lg text-balance">
                   {product.title}
                 </h3>
               </div>
-            </div>
+            </Link>
           ))}
+        </div>
+
+        {/* View All Products Button */}
+        <div className="flex justify-center mt-8">
+          <Link
+            href="/products"
+            className="inline-block px-6 py-3 bg-[rgb(11,58,96)] text-white font-semibold rounded-lg hover:bg-[rgb(8,45,75)] transition-colors"
+          >
+            View All Products
+          </Link>
         </div>
       </div>
     </section>

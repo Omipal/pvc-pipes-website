@@ -1,20 +1,94 @@
-export const productData = [
+export interface Product {
+  slug: string;
+  title: string;
+  description: string;
+  image: string;
+  applications?: string[];
+}
+
+export const productData: Product[] = [
   {
-    title: "C909 PVCO IB Pipe",
-    slug: "aquamax-c909-ib-pvco-pipe",
-    description: "High performance PVCO pressure pipe",
-    applications: ["Potable Water"],
+    slug: "pvc",
+    title: "PVC",
+    description: "Polyvinyl Chloride pipes for various applications",
+    image: "/products/PVCpipes_0.jpg",
+    applications: ["Plumbing", "Storm Drainage", "Water/Sewer"],
   },
   {
-    title: "C900 Certa-Lok® RJIB Pipe",
-    slug: "c900-certa-lok-rjib-pipe",
-    description: "Restrained joint pipe for potable water",
-    applications: ["Potable Water"],
+    slug: "pe",
+    title: "PE",
+    description: "Polyethylene pipes and cables",
+    image: "/products/PEcables02_0.jpg",
+    applications: ["Water/Sewer", "Irrigation", "Gas/Fittings"],
   },
   {
-    title: "C900 Certa-Lok® RJ Pipe",
-    slug: "c900-certa-lok-rj-pipe",
-    description: "C900 pressure pipe system",
-    applications: ["Potable Water"],
+    slug: "abs",
+    title: "ABS",
+    description: "Acrylonitrile Butadiene Styrene pipes",
+    image: "/products/abs.jpg",
+    applications: ["Plumbing", "Wastewater"],
+  },
+  {
+    slug: "water-sewer",
+    title: "Water/Sewer",
+    description: "Specialized pipes for water and sewer systems",
+    image: "/products/n_PVCwaterandsewer.jpg",
+    applications: ["Water/Sewer"],
+  },
+  {
+    slug: "wastewater",
+    title: "Wastewater",
+    description: "HDPE pipes for wastewater management",
+    image: "/products/n_HDPEWaterandSewer.jpg",
+    applications: ["Wastewater"],
+  },
+  {
+    slug: "plumbing",
+    title: "Plumbing",
+    description: "Complete plumbing solutions",
+    image: "/products/plumbing_small.jpg",
+    applications: ["Plumbing"],
+  },
+  {
+    slug: "storm-drainage",
+    title: "Storm/Drainage",
+    description: "Storm drainage and drainage systems",
+    image: "/products/n_PVCplumbing.jpg",
+    applications: ["Storm Drainage"],
+  },
+  {
+    slug: "irrigation",
+    title: "Irrigation",
+    description: "Irrigation system pipes",
+    image: "/products/n_PEstormDrain.jpg",
+    applications: ["Irrigation"],
+  },
+  {
+    slug: "gas-fittings",
+    title: "Gas/Fittings",
+    description: "Gas pipes and fittings",
+    image: "/products/n_PVCirrgiation.jpg",
+    applications: ["Gas/Fittings"],
+  },
+  {
+    slug: "electrical-communications",
+    title: "Electrical/Communications",
+    description: "Electrical and communications conduit",
+    image: "/products/n_gas.jpg",
+    applications: ["Electrical/Communications"],
+  },
+  {
+    slug: "polyethylene-fittings",
+    title: "Polyethylene Fittings",
+    description: "High-quality polyethylene fittings",
+    image: "/products/n_PVCelectricalfittings.jpg",
+    applications: ["Gas/Fittings"],
+  },
+  {
+    slug: "hdpe-pressure-pipe",
+    title: "HDPE Pressure Pipe",
+    description: "High-density polyethylene pressure pipes",
+    image: "/products/n_PEfittings.jpg",
+    applications: ["Water/Sewer", "Irrigation"],
   },
 ];

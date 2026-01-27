@@ -26,7 +26,7 @@ export default function ProductsMegaMenu({ closeMenu }: Props) {
       : category.productFamiliesLinks;
 
   const filteredProducts = productData.filter(
-    (product) => activeItem && product.applications?.includes(activeItem)
+    (product) => activeItem && product.applications?.includes(activeItem),
   );
 
   return (

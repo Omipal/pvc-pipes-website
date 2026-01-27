@@ -9,6 +9,8 @@ import Applications from "./Applications/Applications";
 import GuaranteeSection from "./GuaranteeSection/GuaranteeSection";
 import Support from "./Support/Support";
 import Services from "./Services/Services";
+import LatestNews from "./LatestNews/LatestNews";
+import ProductsSection from "./ProductsSection/ProductsSection";
 import Strength from "./Strength/Strength";
 import Power from "./Power/Power";
 
@@ -62,6 +64,8 @@ const Home = ({
       {support && <Support data={support} heading={supportHeading} />}
 
       {services && <Services data={services} />}
+      <LatestNews />
+      <ProductsSection />
 
       {strength && <Strength data={strength} heading={strengthHeading} />}
 
