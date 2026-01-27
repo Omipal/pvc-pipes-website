@@ -6,9 +6,15 @@ import { HeroBlock } from "@/types/hero";
 import { ApplicationsBlock } from "@/types/application";
 import { GuaranteeBlock } from "@/types/guarantee";
 import { ServicesBlock } from "@/types/services";
+import { FeaturedArticlesBlock } from "@/types/featured-articles";
 
 export default async function HomePage() {
   const landingPage = await getLandingPage();
+
+  const featuredArticlesBlock = landingPage.blocks?.find(
+    (block): block is FeaturedArticlesBlock =>
+      block.__component === "blocks.featured-articles",
+  );
 
   /* =========================
      STEP 1: Sab Section Headings collect karo
@@ -81,6 +87,7 @@ export default async function HomePage() {
       services={servicesBlock}
       powerHeading={powerHeading}
       power={powerBlock}
+      featuredArticles={featuredArticlesBlock}
     />
   );
 }
