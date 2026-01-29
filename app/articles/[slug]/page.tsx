@@ -1,3 +1,4 @@
+import ArticleClient from "./ArticleClient";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
@@ -64,6 +65,8 @@ export default async function ArticlePage({
 
   return (
     <article className="py-16">
+      {/* ✅ Breadcrumb title yahin set hoga */}
+      <ArticleClient title={article.title} />
       <div className="max-w-4xl mx-auto px-4">
         {/* Title */}
         <h1 className="text-3xl md:text-4xl font-oswald font-semibold text-gray-900 mb-6">

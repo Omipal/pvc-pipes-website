@@ -381,9 +381,9 @@ export default function Breadcrumb() {
       { name: "Home", path: "/" },
       { name: "Quick", path: "/quick" },
     ],
-    "/news": [
+    "/articles": [
       { name: "Home", path: "/" },
-      { name: "News", path: "/news" },
+      { name: "Articles", path: "/articles" },
     ],
     "/why-jpf": [
       { name: "Home", path: "/" },
@@ -529,6 +529,39 @@ export default function Breadcrumb() {
             <span className="text-gray-400">›</span>
 
             <li className="font-semibold text-gray-900">Products</li>
+          </ol>
+        </div>
+      </nav>
+    );
+  }
+
+  /**
+   * ================= ARTICLES DETAIL =================
+   * /articles/[slug]
+   * Home > Articles > Article Title (from Context)
+   */
+  if (pathname.startsWith("/articles/") && title) {
+    return (
+      <nav className="bg-gray-50 border-b border-gray-200 py-3 px-4">
+        <div className="max-w-7xl mx-auto">
+          <ol className="flex items-center gap-2 text-sm text-gray-600">
+            <li>
+              <Link href="/" className="hover:text-gray-900">
+                Home
+              </Link>
+            </li>
+
+            <span className="text-gray-400">›</span>
+
+            <li>
+              <Link href="/articles" className="hover:text-gray-900">
+                Articles
+              </Link>
+            </li>
+
+            <span className="text-gray-400">›</span>
+
+            <li className="font-semibold text-gray-900">{title}</li>
           </ol>
         </div>
       </nav>
