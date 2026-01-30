@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Open_Sans, Oswald } from "next/font/google";
 import "./globals.css";
+import StoreProvider from "@/store/StoreProvider";
 
 import Header from "@/components/Helper/Header/Header";
-import { BreadcrumbProvider } from "@/components/Helper/BreadcrumbContext";
-import BreadcrumbWrapper from "@/components/Helper/BreadcrumbWrapper";
 import Footer from "@/components/Helper/Footer/Footer";
 import ScrollToTop from "@/components/Helper/ScrollToTop";
 
 import { getGlobal } from "@/lib/getGlobal";
+import Breadcrumb from "@/components/Breadcrumb";
 
 const openSans = Open_Sans({
   variable: "--font-open-sans",
@@ -63,13 +63,13 @@ export default async function RootLayout({
       <body
         className={`${openSans.variable} ${oswald.variable} ${geistSans.variable} ${geistMono.variable} font-open-sans antialiased bg-white text-[#67737e] leading-1.5`}
       >
-        <Header headerData={global.header} topnavData={global.topnav} />
-        <BreadcrumbProvider>
-          <BreadcrumbWrapper />
+        <StoreProvider>
+          <Header headerData={global.header} topnavData={global.topnav} />
+          <Breadcrumb />
           <main>{children}</main>
-        </BreadcrumbProvider>
-        <Footer footerData={global.footer} />
-        <ScrollToTop />
+          <Footer footerData={global.footer} />
+          <ScrollToTop />
+        </StoreProvider>
       </body>
     </html>
   );

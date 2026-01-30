@@ -17,7 +17,8 @@ export default async function PowerDetailPage({ params }: PageProps) {
   // 🔍 find power card-grid
   const powerBlock = landingPage.blocks?.find(
     (block): block is ApplicationsBlock =>
-      block.__component === "blocks.card-grid" && block.section_type === "power"
+      block.__component === "blocks.card-grid" &&
+      block.section_type === "power",
   );
 
   const card = powerBlock?.cards.find((c) => c.slug === slug);

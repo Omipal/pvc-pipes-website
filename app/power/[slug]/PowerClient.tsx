@@ -1,17 +1,6 @@
-"use client";
-
-import { useEffect } from "react";
-import { useBreadcrumb } from "@/components/Helper/BreadcrumbContext";
 import { ApplicationCard } from "@/types/application";
 
 export default function PowerClient({ card }: { card: ApplicationCard }) {
-  const { setTitle } = useBreadcrumb();
-
-  useEffect(() => {
-    setTitle(card.title);
-    return () => setTitle(undefined);
-  }, [card.title, setTitle]);
-
   return (
     <section className="min-h-screen">
       <div className="container py-10">

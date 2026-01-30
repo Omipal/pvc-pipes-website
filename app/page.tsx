@@ -7,6 +7,7 @@ import { ApplicationsBlock } from "@/types/application";
 import { GuaranteeBlock } from "@/types/guarantee";
 import { ServicesBlock } from "@/types/services";
 import { FeaturedArticlesBlock } from "@/types/featured-articles";
+import { FeaturedProductsBlock } from "@/types/product";
 
 export default async function HomePage() {
   const landingPage = await getLandingPage();
@@ -14,6 +15,11 @@ export default async function HomePage() {
   const featuredArticlesBlock = landingPage.blocks?.find(
     (block): block is FeaturedArticlesBlock =>
       block.__component === "blocks.featured-articles",
+  );
+
+  const featuredProductsBlock = landingPage.blocks?.find(
+    (block): block is FeaturedProductsBlock =>
+      block.__component === "blocks.featured-products",
   );
 
   /* =========================
@@ -88,6 +94,7 @@ export default async function HomePage() {
       powerHeading={powerHeading}
       power={powerBlock}
       featuredArticles={featuredArticlesBlock}
+      featuredProducts={featuredProductsBlock}
     />
   );
 }

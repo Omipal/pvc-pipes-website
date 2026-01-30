@@ -4,6 +4,7 @@ import { GuaranteeBlock } from "./guarantee";
 import { ServicesBlock } from "./services";
 import { SectionHeadingBlock } from "./section-heading";
 import { FeaturedArticlesBlock } from "./featured-articles";
+import { FeaturedProductsBlock } from "./product";
 
 export type LandingPage = {
   blocks?: Array<
@@ -13,5 +14,6 @@ export type LandingPage = {
     | GuaranteeBlock
     | ServicesBlock
     | FeaturedArticlesBlock
+    | FeaturedProductsBlock
   >;
 };

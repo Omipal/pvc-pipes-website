@@ -1,5 +1,6 @@
 "use client";
-
+import { useDebounce } from "@/hooks/useDebounce";
+import { useSearchProductsQuery } from "@/store/api";
 import { useState, useRef, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
@@ -65,6 +66,8 @@ export default function Header({ headerData, topnavData }: HeaderProps) {
   const router = useRouter();
   const pathname = usePathname();
 
+  const [searchTerm, setSearchTerm] = useState("");
+
   const [isOpen, setIsOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
 
@@ -73,13 +76,13 @@ export default function Header({ headerData, topnavData }: HeaderProps) {
 
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [activeBrowseByLink, setActiveBrowseByLink] = useState<string | null>(
-    null
+    null,
   );
   const [activeApplication, setActiveApplication] = useState<string | null>(
-    null
+    null,
   );
   const [activeProductFamily, setActiveProductFamily] = useState<string | null>(
-    null
+    null,
   );
 
   const [isHidden, setIsHidden] = useState(false);
@@ -156,6 +159,29 @@ export default function Header({ headerData, topnavData }: HeaderProps) {
       document.removeEventListener("pointerdown", handleClickOutside);
   }, [searchOpen, isOpen, desktopCompanyOpen, desktopProductsOpen]);
 
+  const debouncedSearch = useDebounce(searchTerm, 400);
+  const { data: searchResults = [], isFetching } = useSearchProductsQuery(
+    debouncedSearch,
+    {
+      skip: debouncedSearch.length < 2,
+    },
+  );
+
+  // 🔹 STEP 8 — shared handler
+  const handleSearchResultClick = (slug: string) => {
+    // route
+    router.push(`/products/${slug}`);
+
+    // close search
+    setSearchOpen(false);
+
+    // clear input
+    setSearchTerm("");
+
+    // close mobile menu if open
+    setIsOpen(false);
+  };
+
   /* ================= JSX ================= */
   return (
     <header
@@ -206,13 +232,55 @@ export default function Header({ headerData, topnavData }: HeaderProps) {
                   <input
                     autoFocus
                     placeholder="Search..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
                     className="flex-1 outline-none text-sm"
                   />
                   <X
                     className="w-5 h-5 cursor-pointer"
                     onClick={() => setSearchOpen(false)}
                   />
+                  {isFetching && (
+                    <div className="px-4 py-2 text-sm text-gray-500 bg-white border-t">
+                      Searching...
+                    </div>
+                  )}
                 </div>
+                {searchResults.length > 0 && (
+                  <div className="absolute left-0 right-0 top-full mt-1 bg-white border shadow-lg max-h-80 overflow-y-auto z-50">
+                    {searchResults.map((product: any) => (
+                      <Link
+                        key={product.id}
+                        href={`/products/${product.slug}`}
+                        onClick={() => handleSearchResultClick(product.slug)}
+                        className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 border-b last:border-b-0"
+                      >
+                        {product.images?.[0]?.url && (
+                          <Image
+                            src={
+                              product.images[0].url.startsWith("http")
+                                ? product.images[0].url
+                                : `${STRAPI_URL}${product.images[0].url}`
+                            }
+                            alt={product.name}
+                            width={40}
+                            height={40}
+                            className="rounded object-cover"
+                          />
+                        )}
+
+                        <div>
+                          <p className="text-sm font-medium text-gray-900">
+                            {product.name}
+                          </p>
+                          <p className="text-xs text-gray-500">
+                            {product.short_description}
+                          </p>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                )}
               </div>
             )}
           </div>
@@ -342,13 +410,55 @@ export default function Header({ headerData, topnavData }: HeaderProps) {
               <input
                 autoFocus
                 placeholder="Search..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
                 className="flex-1 outline-none text-sm"
               />
               <X
                 className="w-5 h-5 cursor-pointer"
                 onClick={() => setSearchOpen(false)}
               />
+              {isFetching && (
+                <div className="px-4 py-2 text-sm text-gray-500 bg-white border-t">
+                  Searching...
+                </div>
+              )}
             </div>
+            {searchResults.length > 0 && (
+              <div className="mt-2 bg-white border shadow-lg max-h-80 overflow-y-auto">
+                {searchResults.map((product: any) => (
+                  <Link
+                    key={product.id}
+                    href={`/products/${product.slug}`}
+                    onClick={() => handleSearchResultClick(product.slug)}
+                    className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 border-b last:border-b-0"
+                  >
+                    {product.images?.[0]?.url && (
+                      <Image
+                        src={
+                          product.images[0].url.startsWith("http")
+                            ? product.images[0].url
+                            : `${STRAPI_URL}${product.images[0].url}`
+                        }
+                        alt={product.name}
+                        width={40}
+                        height={40}
+                        className="rounded object-cover"
+                      />
+                    )}
+
+                    <div>
+                      <p className="text-sm font-medium text-gray-900">
+                        {product.name}
+                      </p>
+                      <p className="text-xs text-gray-500">
+                        {product.short_description}
+                      </p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
         )}
 

@@ -18,7 +18,7 @@ export default async function SupportDetailPage({ params }: PageProps) {
   const supportBlock = landingPage.blocks?.find(
     (block): block is ApplicationsBlock =>
       block.__component === "blocks.card-grid" &&
-      block.section_type === "support"
+      block.section_type === "support",
   );
 
   const card = supportBlock?.cards.find((c) => c.slug === slug);
