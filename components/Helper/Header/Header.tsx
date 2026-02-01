@@ -7,9 +7,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, Search, ChevronDown } from "lucide-react";
 
-import ProductsMegaMenu from "./ProductsMegaMenu";
 import CompanyMenu from "./CompanyMenu";
-const STATIC_MENUS = ["PRODUCTS", "COMPANY"];
+const STATIC_MENUS = ["COMPANY"];
 const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL!;
 
 /* ================= PROPS ================= */
@@ -56,6 +55,11 @@ type NavItem = {
   hasDropDown?: boolean;
   dropdownContent?: DropdownSection[];
 };
+const getStrapiImageUrl = (url?: string) => {
+  if (!url) return null;
+  if (url.startsWith("http")) return url;
+  return `${process.env.NEXT_PUBLIC_STRAPI_URL}${url}`;
+};
 
 /* ================= COMPONENT ================= */
 
@@ -72,9 +76,7 @@ export default function Header({ headerData, topnavData }: HeaderProps) {
   const [searchOpen, setSearchOpen] = useState(false);
 
   const [desktopCompanyOpen, setDesktopCompanyOpen] = useState(false);
-  const [desktopProductsOpen, setDesktopProductsOpen] = useState(false);
 
-  const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [activeBrowseByLink, setActiveBrowseByLink] = useState<string | null>(
     null,
   );
@@ -94,7 +96,6 @@ export default function Header({ headerData, topnavData }: HeaderProps) {
   const mobileSearchButtonRef = useRef<HTMLButtonElement | null>(null);
   const menuRef = useRef<HTMLDivElement | null>(null);
   const companyRef = useRef<HTMLDivElement | null>(null);
-  const productsRef = useRef<HTMLDivElement | null>(null);
   const mobileMenuButtonRef = useRef<HTMLButtonElement | null>(null);
 
   const isActive = (href?: string) => {
@@ -144,20 +145,12 @@ export default function Header({ headerData, topnavData }: HeaderProps) {
       ) {
         setDesktopCompanyOpen(false);
       }
-
-      if (
-        desktopProductsOpen &&
-        productsRef.current &&
-        !productsRef.current.contains(target)
-      ) {
-        setDesktopProductsOpen(false);
-      }
     }
 
     document.addEventListener("pointerdown", handleClickOutside);
     return () =>
       document.removeEventListener("pointerdown", handleClickOutside);
-  }, [searchOpen, isOpen, desktopCompanyOpen, desktopProductsOpen]);
+  }, [searchOpen, isOpen, desktopCompanyOpen]);
 
   const debouncedSearch = useDebounce(searchTerm, 400);
   const { data: searchResults = [], isFetching } = useSearchProductsQuery(
@@ -200,13 +193,24 @@ export default function Header({ headerData, topnavData }: HeaderProps) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Image
-                  src={`${STRAPI_URL}${icon.image.url}`}
-                  alt={icon.image.alternativeText ?? "icon"}
-                  width={16}
-                  height={16}
-                  className="h-4 w-4"
-                />
+                {/* {socialIcon && (
+                  <Image
+                    src={socialIcon}
+                    alt={icon.image?.alternativeText ?? "icon"}
+                    width={16}
+                    height={16}
+                    className="h-4 w-4"
+                  />
+                )} */}
+                {icon.image?.url && (
+                  <Image
+                    src={getStrapiImageUrl(icon.image.url)!}
+                    alt={icon.image.alternativeText ?? "icon"}
+                    width={18}
+                    height={18}
+                    className="h-4 w-4"
+                  />
+                )}
               </Link>
             ))}
           </div>
@@ -301,9 +305,9 @@ export default function Header({ headerData, topnavData }: HeaderProps) {
             <Image
               src={logoUrl || "/placeholder.svg"}
               alt={headerData.logo.image.alternativeText ?? "Logo"}
-              width={80}
-              height={80}
-              className="h-auto w-16 sm:w-20"
+              width={96}
+              height={96}
+              className="h-auto w-16 sm:w-24"
             />
           </Link>
 
@@ -325,35 +329,15 @@ export default function Header({ headerData, topnavData }: HeaderProps) {
                 </Link>
               ))}
 
-            {/* PRODUCTS */}
-            <div ref={productsRef} onPointerDown={(e) => e.stopPropagation()}>
-              <button
-                onClick={() => {
-                  setDesktopProductsOpen((p) => !p);
-                  setDesktopCompanyOpen(false);
-                }}
-                className="flex items-center gap-1 px-2 lg:px-3 py-2 font-medium text-green-800 cursor-pointer text-sm lg:text-base"
-              >
-                PRODUCTS <ChevronDown className="w-4 h-4" />
-              </button>
-
-              {desktopProductsOpen && (
-                <ProductsMegaMenu
-                  closeMenu={() => setDesktopProductsOpen(false)}
-                />
-              )}
-            </div>
-
             {/* COMPANY */}
             <div ref={companyRef} onPointerDown={(e) => e.stopPropagation()}>
               <button
                 onClick={() => {
                   setDesktopCompanyOpen((p) => !p);
-                  setDesktopProductsOpen(false);
                 }}
                 className="flex items-center gap-1 px-2 lg:px-3 py-2 font-medium text-green-800 cursor-pointer text-sm lg:text-base"
               >
-                COMPANY <ChevronDown className="w-4 h-4" />
+                Company <ChevronDown className="w-4 h-4" />
               </button>
 
               {desktopCompanyOpen && (
@@ -489,55 +473,6 @@ export default function Header({ headerData, topnavData }: HeaderProps) {
                   ))}
               </div>
               <div className="border-t border-gray-200 pt-6">
-                {/* PRODUCTS */}
-                <div className="mb-4">
-                  <div
-                    onClick={() =>
-                      setActiveCategory(activeCategory ? null : "municipal")
-                    }
-                    className="flex items-center justify-between w-full px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-100 rounded cursor-pointer"
-                  >
-                    <Link
-                      href="/products"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setIsOpen(false);
-                      }}
-                      className="flex-1"
-                    >
-                      PRODUCTS
-                    </Link>
-                    <ChevronDown
-                      className={`w-5 h-5 transition-transform flex-shrink-0 ${
-                        activeCategory ? "rotate-180" : ""
-                      }`}
-                    />
-                  </div>
-                  {activeCategory && (
-                    <div className="mt-2 ml-4 space-y-2">
-                      {[
-                        "Municipal Systems",
-                        "Plumbing & Industrial",
-                        "Water Well",
-                        "Agriculture & Irrigation",
-                        "Electrical",
-                        "Pool & Spa",
-                      ].map((category) => (
-                        <Link
-                          key={category}
-                          href={`/products/${category
-                            .toLowerCase()
-                            .replace(/\s+/g, "-")}`}
-                          onClick={() => setIsOpen(false)}
-                          className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-gray-50 rounded"
-                        >
-                          {category}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
                 {/* COMPANY */}
                 <div>
                   <div

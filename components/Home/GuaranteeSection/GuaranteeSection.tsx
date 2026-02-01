@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { Shield, CheckCircle, Award, ArrowRight } from "lucide-react";
 import { GuaranteeBlock } from "@/types/guarantee";
+import Image from "next/image";
 
 const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL;
 
@@ -17,12 +18,13 @@ const GuaranteeSection = ({ data }: Props) => {
     <section className="section-padding relative overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
-        <img
+        <Image
           src={
             data.image?.url ? `${STRAPI_URL}${data.image.url}` : "/pipes-2.jpg"
           }
           alt={data.image?.alternativeText || "Water pipes"}
-          className="w-full h-full object-cover"
+          fill
+          className="object-cover"
         />
         <div className="absolute inset-0 bg-[rgba(11,58,96,0.9)]" />
       </div>

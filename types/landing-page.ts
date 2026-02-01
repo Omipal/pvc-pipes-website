@@ -5,6 +5,7 @@ import { ServicesBlock } from "./services";
 import { SectionHeadingBlock } from "./section-heading";
 import { FeaturedArticlesBlock } from "./featured-articles";
 import { FeaturedProductsBlock } from "./product";
+import { ContentWithImageBlock } from "./content-with-image";
 
 export type LandingPage = {
   blocks?: Array<
@@ -15,5 +16,6 @@ export type LandingPage = {
     | ServicesBlock
     | FeaturedArticlesBlock
     | FeaturedProductsBlock
+    | ContentWithImageBlock
   >;
 };

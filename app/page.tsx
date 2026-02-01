@@ -1,4 +1,5 @@
 import Home from "@/components/Home/Home";
+import { ContentWithImageBlock } from "@/types/content-with-image";
 import { getLandingPage } from "@/lib/getLandingPage";
 
 import { SectionHeadingBlock } from "@/types/section-heading";
@@ -11,6 +12,11 @@ import { FeaturedProductsBlock } from "@/types/product";
 
 export default async function HomePage() {
   const landingPage = await getLandingPage();
+
+  const aboutBlock = landingPage.blocks?.find(
+    (block): block is ContentWithImageBlock =>
+      block.__component === "blocks.content-with-image",
+  );
 
   const featuredArticlesBlock = landingPage.blocks?.find(
     (block): block is FeaturedArticlesBlock =>
@@ -83,6 +89,7 @@ export default async function HomePage() {
   return (
     <Home
       hero={heroBlock}
+      about={aboutBlock}
       applicationsHeading={applicationsHeading}
       applications={applicationsBlock}
       guarantee={guaranteeBlock}

@@ -2,7 +2,7 @@ import HeroBanner from "../../components/Helper/HeroBanner";
 import { Locations } from "./components/Locations";
 // import DistributorLocator from "./components/DistributorLocator";
 
-const DistributorPage = () => {
+const LocationsPage = () => {
   return (
     <>
       <HeroBanner />
@@ -12,4 +12,4 @@ const DistributorPage = () => {
   );
 };
 
-export default DistributorPage;
+export default LocationsPage;

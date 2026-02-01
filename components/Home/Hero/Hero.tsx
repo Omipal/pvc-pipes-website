@@ -87,12 +87,12 @@ export default function Hero({ data }: HeroProps) {
                 >
                   {link.label}
                 </button>
-              )
+              ),
             )}
           </div>
 
           {/* Stats */}
-          {data.stats && (
+          {/* {data.stats && (
             <div className="grid grid-cols-3 gap-4 sm:gap-6 md:gap-8 pt-4 sm:pt-6 border-t border-white/20 mt-6 sm:mt-8">
               {data.stats.map((stat) => (
                 <div className="text-center sm:text-left" key={stat.id}>
@@ -105,7 +105,7 @@ export default function Hero({ data }: HeroProps) {
                 </div>
               ))}
             </div>
-          )}
+          )} */}
         </div>
 
         {/* Right side info card */}

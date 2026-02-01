@@ -1,10 +1,12 @@
 import { HeroBlock } from "@/types/hero";
+import { ContentWithImageBlock } from "@/types/content-with-image";
 import { ApplicationsBlock } from "@/types/application";
 import { GuaranteeBlock } from "@/types/guarantee";
 import { ServicesBlock } from "@/types/services";
 import { SectionHeadingBlock } from "@/types/section-heading";
 
 import Hero from "./Hero/Hero";
+import AboutSection from "./AboutSection/AboutSection";
 import Applications from "./Applications/Applications";
 import GuaranteeSection from "./GuaranteeSection/GuaranteeSection";
 import Support from "./Support/Support";
@@ -19,7 +21,7 @@ import Power from "./Power/Power";
 
 type HomeProps = {
   hero?: HeroBlock;
-
+  about?: ContentWithImageBlock;
   applicationsHeading?: SectionHeadingBlock;
   applications?: ApplicationsBlock;
 
@@ -41,7 +43,7 @@ type HomeProps = {
 
 const Home = ({
   hero,
-
+  about,
   applicationsHeading,
   applications,
 
@@ -62,6 +64,7 @@ const Home = ({
   return (
     <div className="overflow-hidden">
       {hero && <Hero data={hero} />}
+      {about && <AboutSection data={about} />}
 
       {applications && (
         <Applications data={applications} heading={applicationsHeading} />

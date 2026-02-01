@@ -1,13 +1,4 @@
-import {
-  MapPin,
-  Phone,
-  Mail,
-  Facebook,
-  Twitter,
-  Linkedin,
-  Youtube,
-  Instagram,
-} from "lucide-react";
+import { Facebook, Twitter, Linkedin, Youtube, Instagram } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -30,6 +21,20 @@ type FooterProps = {
       label: string;
       href: string;
       isExternal: boolean;
+    }[];
+
+    companyitems: {
+      id: number;
+      label: string;
+      href: string;
+      isExternal: boolean;
+    }[];
+    newsLinks: {
+      id: number;
+      isExternal: boolean;
+      href: string;
+      date: string;
+      title: string;
     }[];
 
     contactLinks: {
@@ -80,6 +85,11 @@ const newsItems = [
   { date: "Oct 10, 2024", title: "Sustainability report released" },
 ];
 
+const getStrapiImageUrl = (url?: string) => {
+  if (!url) return null;
+  if (url.startsWith("http")) return url;
+  return `${process.env.NEXT_PUBLIC_STRAPI_URL}${url}`;
+};
 export default function Footer({ footerData }: FooterProps) {
   const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL!;
 
@@ -97,9 +107,9 @@ export default function Footer({ footerData }: FooterProps) {
               <Image
                 src={logoUrl}
                 alt={footerData.logo.image.alternativeText ?? "Footer Logo"}
-                width={80}
-                height={80}
-                className="h-16 md:h-20 lg:h-24 w-auto invert brightness-0 filter"
+                width={96}
+                height={96}
+                className="h-auto w-16 sm:w-24 invert brightness-0 filter"
               />
             </Link>
             <p className="text-left text-gray-300 text-sm mt-4 max-w-sm sm:max-w-md">
@@ -109,7 +119,7 @@ export default function Footer({ footerData }: FooterProps) {
           {/* Product & Resource Center */}
           <div className="col-span-1">
             <h3 className="font-display text-sm sm:text-base md:text-lg font-bold text-white mb-4 sm:mb-6 uppercase tracking-wide">
-              Product & Resource Center
+              Product
             </h3>
             <ul className="space-y-2 sm:space-y-3">
               {footerData.navitems.map((item) => (
@@ -129,10 +139,10 @@ export default function Footer({ footerData }: FooterProps) {
           {/* Engineer's Toolbox */}
           <div className="col-span-1">
             <h3 className="font-display text-sm sm:text-base md:text-lg font-bold text-white mb-4 sm:mb-6 uppercase tracking-wide">
-              Engineer's Toolbox
+              Company
             </h3>
             <ul className="space-y-2 sm:space-y-3">
-              {footerData.navitems.map((item) => (
+              {footerData.companyitems.map((item) => (
                 <li key={item.id}>
                   <Link
                     href={item.href}
@@ -152,13 +162,14 @@ export default function Footer({ footerData }: FooterProps) {
               News & Events
             </h3>
             <ul className="space-y-3 sm:space-y-4">
-              {newsItems.map((item) => (
+              {footerData.newsLinks.map((item) => (
                 <li key={item.title}>
                   <span className="text-[10px] sm:text-xs text-[#00a35a] block mb-1">
                     {item.date}
                   </span>
                   <Link
-                    href="#"
+                    href={item.href}
+                    target={item.isExternal ? "_blank" : "_self"}
                     className="text-xs sm:text-sm hover:text-[#00a35a] transition-colors leading-tight block text-[rgb(179,191,204)]"
                   >
                     {item.title}
@@ -182,12 +193,15 @@ export default function Footer({ footerData }: FooterProps) {
                     target={item.isExternal ? "_blank" : "_self"}
                     className="flex items-start gap-3 text-white"
                   >
-                    <Image
-                      src={`${STRAPI_URL}${item.image.url}`}
-                      alt={item.image.alternativeText ?? item.label}
-                      width={18}
-                      height={18}
-                    />
+                    {item.image?.url && (
+                      <Image
+                        src={getStrapiImageUrl(item.image.url)!}
+                        alt={item.image.alternativeText ?? item.label}
+                        width={18}
+                        height={18}
+                        className="invert brightness-0 filter"
+                      />
+                    )}
                     <span>{item.label}</span>
                   </Link>
                 ))}
@@ -201,13 +215,6 @@ export default function Footer({ footerData }: FooterProps) {
                   aria-label="Facebook"
                 >
                   <Facebook className="w-4 h-4 sm:w-5 sm:h-5" />
-                </Link>
-                <Link
-                  href="https://x.com/"
-                  className="text-footer-text hover:text-[#00a35a] transition-colors text-[rgb(179,191,204)]"
-                  aria-label="Twitter"
-                >
-                  <Twitter className="w-4 h-4 sm:w-5 sm:h-5" />
                 </Link>
                 <Link
                   href="https://www.linkedin.com/"
@@ -243,7 +250,7 @@ export default function Footer({ footerData }: FooterProps) {
             {/* Logo */}
             <div className="flex items-center gap-2 sm:gap-4">
               <span className="font-display text-lg sm:text-xl font-bold text-white">
-                JM<span className="text-[#00a35a]"> Eagle</span>
+                <span className="text-[#fe6100]">Dhruvam</span>
               </span>
               <span className="text-[10px] sm:text-xs text-[rgba(179,191,204,0.6)]">
                 {footerData.companyText}
