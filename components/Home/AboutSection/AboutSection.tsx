@@ -12,7 +12,9 @@ const AboutSection = ({ data }: Props) => {
   const { heading, content, image, reversed, link } = data;
 
   const imageUrl = getStrapiImage(image);
-  const altText = image?.data?.attributes?.alternativeText ?? heading;
+  // const altText = image?.data?.attributes?.alternativeText ?? heading;
+  const altText =
+    image?.data?.attributes?.alternativeText || heading || "Image";
 
   return (
     <section className="py-16 bg-gray-100">

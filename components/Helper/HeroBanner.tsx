@@ -1,23 +1,22 @@
 import Image from "next/image";
-
-const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL!;
+import { Banner } from "../../types/banner";
+import { getStrapiImage } from "@/lib/getStrapiImage";
 
 type Props = {
-  banner?: {
-    type: "IMAGE" | "VIDEO";
-    image?: { url: string };
-    video?: { url: string };
-  };
+  banner?: Banner;
 };
 
 export default function HeroBanner({ banner }: Props) {
   if (!banner) return null;
 
+  const imageUrl = getStrapiImage(banner.image);
+  const videoUrl = getStrapiImage(banner.video);
+
   return (
     <section className="relative min-h-[400px] overflow-hidden">
-      {banner.type === "IMAGE" && banner.image && (
+      {banner.type === "IMAGE" && imageUrl && (
         <Image
-          src={`${STRAPI_URL}${banner.image.url}`}
+          src={imageUrl}
           alt="Hero Banner"
           fill
           className="object-cover"
@@ -25,10 +24,10 @@ export default function HeroBanner({ banner }: Props) {
         />
       )}
 
-      {banner.type === "VIDEO" && banner.video && (
+      {banner.type === "VIDEO" && videoUrl && (
         <video
           className="w-full h-full object-cover"
-          src={`${STRAPI_URL}${banner.video.url}`}
+          src={videoUrl}
           autoPlay
           muted
           loop

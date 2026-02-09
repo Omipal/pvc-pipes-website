@@ -1,0 +1,93 @@
+import Image from "next/image";
+import Link from "next/link";
+import { FeaturedArticlesBlock } from "@/types/featured-articles";
+import { getStrapiImage } from "@/lib/getStrapiImage";
+
+type Props = {
+  data: FeaturedArticlesBlock;
+};
+
+export default function Article({ data }: Props) {
+  const { title, articles } = data;
+
+  if (!articles?.length) return null;
+
+  return (
+    <section className="section-padding bg-gray-50">
+      <div className="container">
+        {title && (
+          <h2 className="text-3xl font-bold mb-8 text-center">{title}</h2>
+        )}
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {articles.map((article) => {
+            const imageUrl = article.featuredImage
+              ? getStrapiImage(article.featuredImage)
+              : null;
+
+            return (
+              <div
+                key={article.id}
+                className="bg-white rounded-xl overflow-hidden shadow hover:shadow-lg transition"
+              >
+                {imageUrl && (
+                  <div className="relative h-48">
+                    <Image
+                      src={imageUrl}
+                      alt={article.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                )}
+
+                <div className="p-5">
+                  {/* TITLE */}
+                  <h3 className="text-lg font-semibold mb-1">
+                    {article.title}
+                  </h3>
+
+                  {/* AUTHOR */}
+                  {article.author?.fullName && (
+                    <p className="text-xs text-gray-500 mb-2">
+                      By {article.author.fullName}
+                    </p>
+                  )}
+
+                  {/* TAGS */}
+                  {article.contentTags?.length ? (
+                    <div className="flex flex-wrap gap-2 mb-3">
+                      {article.contentTags.map((tag) => (
+                        <span
+                          key={tag.id}
+                          className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded"
+                        >
+                          {tag.title}
+                        </span>
+                      ))}
+                    </div>
+                  ) : null}
+
+                  {/* DESCRIPTION */}
+                  {article.description && (
+                    <p className="text-sm text-gray-600 mb-3 line-clamp-3">
+                      {article.description}
+                    </p>
+                  )}
+
+                  {/* READ MORE */}
+                  <Link
+                    href={`/article/${article.slug}`}
+                    className="text-green-600 font-medium text-sm"
+                  >
+                    Read more →
+                  </Link>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}

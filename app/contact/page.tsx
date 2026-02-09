@@ -1,27 +1,18 @@
-// import React from "react";
-// import HeroBanner from "../../components/Helper/HeroBanner";
-// import ContactSection from "./components/ContactSection";
-
-// const ContactPage = () => {
-//   return (
-//     <>
-//       <HeroBanner />
-//       <ContactSection />
-//     </>
-//   );
-// };
-
-// export default ContactPage;
 import HeroBanner from "../../components/Helper/HeroBanner";
 import { ContactPageClient } from "./components/contact-page-client";
-import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+import { getPageBySlug } from "@/lib/getPageBySlug";
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const page = await getPageBySlug("contact");
+
+  const contactBlock = page?.blocks?.find(
+    (block: any) => block.__component === "blocks.contact",
+  );
+
   return (
     <>
       <HeroBanner />
-      <ContactPageClient />
+      <ContactPageClient contact={contactBlock} />
     </>
   );
 }

@@ -6,6 +6,7 @@ export type ProductImage = {
 export type ProductCategory = {
   id: number;
   name: string;
+  slug: string;
 };
 
 export type Product = {
@@ -15,7 +16,7 @@ export type Product = {
   name: string;
   short_description: string;
   price: number;
-  offerPrice: number;
+  offerPrice?: number | null;
   images: ProductImage[];
   categories: ProductCategory[];
 };

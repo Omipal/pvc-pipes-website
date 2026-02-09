@@ -13,9 +13,11 @@ import Support from "./Support/Support";
 import Services from "./Services/Services";
 
 import ProductsSection from "./ProductsSection/ProductsSection";
-import { FeaturedArticlesBlock } from "@/types/featured-articles";
 import { FeaturedProductsBlock } from "@/types/product";
-import FeaturedArticles from "./FeaturedArticles/FeaturedArticles";
+
+import { FeaturedArticlesBlock } from "@/types/featured-articles";
+import Article from "./Article/Article";
+
 import Strength from "./Strength/Strength";
 import Power from "./Power/Power";
 
@@ -37,8 +39,8 @@ type HomeProps = {
   guarantee?: GuaranteeBlock;
   services?: ServicesBlock;
 
-  featuredArticles?: FeaturedArticlesBlock;
   featuredProducts?: FeaturedProductsBlock;
+  featuredArticles?: FeaturedArticlesBlock;
 };
 
 const Home = ({
@@ -58,8 +60,9 @@ const Home = ({
 
   guarantee,
   services,
-  featuredArticles,
+
   featuredProducts,
+  featuredArticles,
 }: HomeProps) => {
   return (
     <div className="overflow-hidden">
@@ -77,7 +80,8 @@ const Home = ({
       {services && <Services data={services} />}
 
       {featuredProducts && <ProductsSection data={featuredProducts} />}
-      {featuredArticles && <FeaturedArticles data={featuredArticles} />}
+      {featuredArticles && <Article data={featuredArticles} />}
+
       {strength && <Strength data={strength} heading={strengthHeading} />}
 
       {power && <Power data={power} heading={powerHeading} />}

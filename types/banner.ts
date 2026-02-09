@@ -1,5 +1,3 @@
-// types/page.ts
-
 export type Media = {
   data: {
     attributes: {
@@ -10,6 +8,7 @@ export type Media = {
 };
 
 export type Banner = {
+  __component: "blocks.banner";
   type: "IMAGE" | "VIDEO";
   image?: Media;
   video?: Media;
