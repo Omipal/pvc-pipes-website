@@ -9,7 +9,7 @@ import Hero from "./Hero/Hero";
 import AboutSection from "./AboutSection/AboutSection";
 import Applications from "./Applications/Applications";
 import GuaranteeSection from "./GuaranteeSection/GuaranteeSection";
-import Support from "./Support/Support";
+import StrengthSupport from "./StrengthSupport/StrengthSupport";
 import Services from "./Services/Services";
 
 import ProductsSection from "./ProductsSection/ProductsSection";
@@ -28,7 +28,7 @@ type HomeProps = {
   applications?: ApplicationsBlock;
 
   supportHeading?: SectionHeadingBlock;
-  support?: ApplicationsBlock;
+  strengthSupport?: ApplicationsBlock;
 
   strengthHeading?: SectionHeadingBlock;
   strength?: ApplicationsBlock;
@@ -50,7 +50,7 @@ const Home = ({
   applications,
 
   supportHeading,
-  support,
+  strengthSupport,
 
   strengthHeading,
   strength,
@@ -75,7 +75,9 @@ const Home = ({
 
       {guarantee && <GuaranteeSection data={guarantee} />}
 
-      {support && <Support data={support} heading={supportHeading} />}
+      {strengthSupport && (
+        <StrengthSupport data={strengthSupport} heading={supportHeading} />
+      )}
 
       {services && <Services data={services} />}
 

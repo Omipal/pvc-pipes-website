@@ -22,7 +22,7 @@ type StrengthProps = {
 
 export default function Strength({ data, heading }: StrengthProps) {
   return (
-    <section className="section-padding bg-gray-50">
+    <section className="section-padding bg-gray-100">
       <div className="container">
         {/* Header */}
         <div className="section-box">
@@ -31,7 +31,7 @@ export default function Strength({ data, heading }: StrengthProps) {
           )}
 
           {heading?.sub_heading && (
-            <p className="text-blue-600 text-xs sm:text-sm uppercase tracking-wide mb-3 sm:mb-4">
+            <p className="text-[#ff6100] text-xs sm:text-sm uppercase tracking-wide mb-3 sm:mb-4">
               {heading.sub_heading}
             </p>
           )}
@@ -56,10 +56,10 @@ export default function Strength({ data, heading }: StrengthProps) {
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 group-hover:bg-blue-50 transition-colors">
-                  <Icon className="w-6 h-6 sm:w-7 sm:h-7 text-blue-600 group-hover:text-blue-700 transition-colors" />
+                  <Icon className="w-6 h-6 sm:w-7 sm:h-7 text-[#ff6100] group-hover:text-[rgba(255,97,0,0.7)] transition-colors" />
                 </div>
 
-                <h3 className="text-xs sm:text-sm font-semibold text-gray-900 group-hover:text-blue-600 transition-colors leading-tight">
+                <h3 className="text-xs sm:text-sm font-semibold text-black group-hover:text-[#ff6100] transition-colors leading-tight">
                   {card.title}
                 </h3>
               </Link>

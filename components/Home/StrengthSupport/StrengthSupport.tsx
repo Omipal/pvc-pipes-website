@@ -20,7 +20,7 @@ type SupportProps = {
   heading?: SectionHeadingBlock;
 };
 
-export default function Support({ data, heading }: SupportProps) {
+export default function StrengthSupport({ data, heading }: SupportProps) {
   return (
     <section className="section-padding bg-white">
       <div className="container">
@@ -31,7 +31,7 @@ export default function Support({ data, heading }: SupportProps) {
           )}
 
           {heading?.sub_heading && (
-            <p className="text-blue-600 text-xs sm:text-sm uppercase tracking-wide mb-3 sm:mb-4">
+            <p className="text-[#ff6100] text-xs sm:text-sm uppercase tracking-wide mb-3 sm:mb-4">
               {heading.sub_heading}
             </p>
           )}
@@ -51,11 +51,11 @@ export default function Support({ data, heading }: SupportProps) {
             return (
               <Link
                 key={card.id}
-                href={`/support/${card.slug}`}
+                href={`/strength-support/${card.slug}`}
                 className="flex flex-col items-center text-center p-4 md:p-6 rounded-lg bg-gray-50 hover:shadow-md transition-shadow w-full"
               >
-                <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-teal-100 flex items-center justify-center mb-3 md:mb-4">
-                  <Icon className="w-6 h-6 md:w-7 md:h-7 text-teal-600" />
+                <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#eae2b7] flex items-center justify-center mb-3 md:mb-4">
+                  <Icon className="w-6 h-6 md:w-7 md:h-7 text-[#ff6100]" />
                 </div>
 
                 <h3 className="font-semibold text-gray-900 text-xs md:text-sm mb-1">

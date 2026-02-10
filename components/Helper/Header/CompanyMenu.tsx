@@ -18,7 +18,7 @@ export default function CompanyMenu({ sections, close }: any) {
                     <Link
                       href={link.href}
                       onClick={close}
-                      className="text-sm text-gray-700 hover:text-blue-600"
+                      className="text-sm text-[#1a397d] hover:text-[#ff6100]"
                     >
                       {link.label}
                     </Link>

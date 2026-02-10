@@ -116,10 +116,7 @@ export default function LocationsDrawer({
           placeholder="Enter location"
           className="flex-1 border border-gray-300 rounded-lg px-4 py-3 text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         />
-        <button
-          onClick={handleSearch}
-          className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors"
-        >
+        <button onClick={handleSearch} className="btn-orange">
           Search
         </button>
       </div>

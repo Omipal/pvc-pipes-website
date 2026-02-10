@@ -13,8 +13,9 @@ export type HeroLink = {
   label: string;
   href: string;
   isExternal: boolean;
-  isButtonLink?: boolean;
-  type?: string;
+  type?: "PRIMARY" | "SECONDARY";
+  // isButtonLink?: boolean;
+  // type?: string;
 };
 
 export type HeroInfoCard = {

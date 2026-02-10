@@ -68,7 +68,7 @@ export default async function HomePage() {
   );
 
   const supportBlock = cardGridBlocks?.find(
-    (b) => b.section_type === "support",
+    (b) => b.section_type === "strengthSupport",
   );
 
   const performanceBlock = cardGridBlocks?.find(
@@ -94,7 +94,7 @@ export default async function HomePage() {
       applications={applicationsBlock}
       guarantee={guaranteeBlock}
       supportHeading={supportHeading}
-      support={supportBlock}
+      strengthSupport={supportBlock}
       strengthHeading={performanceHeading}
       strength={performanceBlock}
       services={servicesBlock}

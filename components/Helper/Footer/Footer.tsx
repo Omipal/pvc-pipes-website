@@ -1,4 +1,3 @@
-import { Facebook, Twitter, Linkedin, Youtube, Instagram } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -40,6 +39,16 @@ type FooterProps = {
     contactLinks: {
       id: number;
       label: string;
+      href: string;
+      isExternal: boolean;
+      image: {
+        url: string;
+        alternativeText: string | null;
+      };
+    }[];
+
+    socialLinks?: {
+      id: number;
       href: string;
       isExternal: boolean;
       image: {
@@ -127,7 +136,7 @@ export default function Footer({ footerData }: FooterProps) {
                   <Link
                     href={item.href}
                     target={item.isExternal ? "_blank" : "_self"}
-                    className="text-xs sm:text-sm hover:text-[#00a35a] transition-colors text-[rgb(179,191,204)]"
+                    className="text-xs sm:text-sm hover:text-[#ff6100] transition-colors text-[rgb(179,191,204)]"
                   >
                     {item.label}
                   </Link>
@@ -147,7 +156,7 @@ export default function Footer({ footerData }: FooterProps) {
                   <Link
                     href={item.href}
                     target={item.isExternal ? "_blank" : "_self"}
-                    className="text-xs sm:text-sm hover:text-[#00a35a] transition-colors text-[rgb(179,191,204)]"
+                    className="text-xs sm:text-sm hover:text-[#ff6100] transition-colors text-[rgb(179,191,204)]"
                   >
                     {item.label}
                   </Link>
@@ -164,13 +173,13 @@ export default function Footer({ footerData }: FooterProps) {
             <ul className="space-y-3 sm:space-y-4">
               {footerData.newsLinks.map((item) => (
                 <li key={item.title}>
-                  <span className="text-[10px] sm:text-xs text-[#00a35a] block mb-1">
+                  <span className="text-[10px] sm:text-xs text-[#fcbf49] block mb-1">
                     {item.date}
                   </span>
                   <Link
                     href={item.href}
                     target={item.isExternal ? "_blank" : "_self"}
-                    className="text-xs sm:text-sm hover:text-[#00a35a] transition-colors leading-tight block text-[rgb(179,191,204)]"
+                    className="text-xs sm:text-sm hover:text-[#ff6100] transition-colors leading-tight block text-[rgb(179,191,204)]"
                   >
                     {item.title}
                   </Link>
@@ -209,34 +218,24 @@ export default function Footer({ footerData }: FooterProps) {
 
               {/* Social Links */}
               <div className="flex items-center gap-3 sm:gap-4 pt-3 sm:pt-4">
-                <Link
-                  href="https://www.facebook.com/"
-                  className="text-footer-text hover:text-[#00a35a] transition-colors text-[rgb(179,191,204)]"
-                  aria-label="Facebook"
-                >
-                  <Facebook className="w-4 h-4 sm:w-5 sm:h-5" />
-                </Link>
-                <Link
-                  href="https://www.linkedin.com/"
-                  className="text-footer-text hover:text-[#00a35a] transition-colors text-[rgb(179,191,204)]"
-                  aria-label="LinkedIn"
-                >
-                  <Linkedin className="w-4 h-4 sm:w-5 sm:h-5" />
-                </Link>
-                <Link
-                  href="https://www.youtube.com/"
-                  className="text-footer-text hover:text-[#00a35a] transition-colors text-[rgb(179,191,204)]"
-                  aria-label="YouTube"
-                >
-                  <Youtube className="w-4 h-4 sm:w-5 sm:h-5" />
-                </Link>
-                <Link
-                  href="https://www.instagram.com/"
-                  className="text-footer-text hover:text-[#00a35a] transition-colors text-[rgb(179,191,204)]"
-                  aria-label="Instagram"
-                >
-                  <Instagram className="w-4 h-4 sm:w-5 sm:h-5" />
-                </Link>
+                {Array.isArray(footerData.socialLinks) &&
+                  footerData.socialLinks.map((item) => (
+                    <Link
+                      key={item.id}
+                      href={item.href}
+                      target={item.isExternal ? "_blank" : "_self"}
+                    >
+                      {item.image?.url && (
+                        <Image
+                          src={getStrapiImageUrl(item.image.url)!}
+                          alt={item.image.alternativeText ?? "social"}
+                          width={18}
+                          height={18}
+                          className="invert brightness-0 filter"
+                        />
+                      )}
+                    </Link>
+                  ))}
               </div>
             </div>
           </div>
@@ -278,7 +277,7 @@ export default function Footer({ footerData }: FooterProps) {
       </div>
 
       {/* Accent bar */}
-      <div className="h-1 bg-[#00a35a]" />
+      <div className="h-1 bg-[#fe6100]" />
     </footer>
   );
 }

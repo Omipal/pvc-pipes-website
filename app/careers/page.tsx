@@ -1,18 +1,21 @@
 import { getPageBySlug } from "@/lib/getPageBySlug";
-import HeroBanner from "../../components/Helper/HeroBanner";
+
 import EmploymentFromStrapi from "./components/EmploymentFromStrapi";
+import { CareersBlock } from "../../types/careers";
 
 export default async function CareersPage() {
   const page = await getPageBySlug("careers");
-
   if (!page) return null;
 
-  const block = page.blocks?.[0];
+  const careersBlock = page.blocks.find(
+    (block): block is CareersBlock => block.__component === "blocks.markdown",
+  );
+
+  if (!careersBlock) return null;
 
   return (
     <>
-      <HeroBanner banner={block?.banner} />
-      <EmploymentFromStrapi content={block?.content} />
+      <EmploymentFromStrapi content={careersBlock.content} />
     </>
   );
 }

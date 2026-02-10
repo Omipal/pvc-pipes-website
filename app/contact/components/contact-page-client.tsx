@@ -4,16 +4,19 @@ import { useState } from "react";
 import { ChevronRight } from "lucide-react";
 import { ContactCards } from "./contact-cards";
 import { ContactDetail } from "./contact-detail";
+import { ContactBlock, ContactCard } from "@/types/contact";
 
-export function ContactPageClient({ contact }: any) {
-  const [selectedCard, setSelectedCard] = useState<any>(null);
+type Props = {
+  contact: ContactBlock;
+};
 
-  if (!contact) return null;
+export function ContactPageClient({ contact }: Props) {
+  const [selectedCard, setSelectedCard] = useState<ContactCard | null>(null);
 
   return (
     <>
       {selectedCard && (
-        <div className="border-b border-blue-100 bg-white/50 px-4 py-3 mb-8">
+        <div className="border-b bg-white/50 px-4 py-3 mb-8">
           <nav className="flex items-center gap-2 text-sm">
             <span>Contact</span>
             <ChevronRight className="w-4 h-4" />

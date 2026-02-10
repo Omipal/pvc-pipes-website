@@ -16,7 +16,7 @@
     @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold;
   }
   h2 {
-    @apply text-2xl sm:text-3xl md:text-4xl font-bold uppercase mb-3 leading-tight;
+    @apply text-2xl sm:text-3xl md:text-4xl font-bold uppercase mb-3 leading-tight text-[#1a397d];
   }
   p {
     @apply text-gray-700 text-sm md:text-base leading-relaxed;
@@ -33,15 +33,16 @@
   .section-content {
     @apply space-y-5;
   }
+
   .btn-primary {
-    @apply border-2 border-[#00a35a] text-[#00a35a] hover:bg-[#00a35a] hover:text-white text-xs px-4 py-1.5 h-9 cursor-pointer;
+    @apply px-12 py-3  font-medium text-white  border rounded-lg border-[#ff6100] bg-[#ff6100]  hover:bg-transparent  hover:cursor-pointer duration-300;
   }
 
   .btn-secondary {
-    @apply px-6 py-3 cursor-pointer;
+    @apply px-12 py-3 font-medium text-[#ff6100] border rounded-lg border-[#ff6100] bg-transparent hover:bg-[#ff6100] hover:text-white hover:cursor-pointer duration-300;
   }
-  .btn-green {
-    @apply mt-2 sm:mt-4 bg-[#00a35a] hover:bg-[rgba(0,163,90,0.9)] text-white font-semibold px-6 sm:px-8 py-3 rounded transition-colors duration-200 inline-flex items-center gap-2 cursor-pointer;
+  .btn-orange {
+    @apply bg-[#ff6100] hover:bg-[#1a397d] text-white font-semibold px-6 sm:px-8 py-4 rounded transition-colors duration-200 inline-flex items-center gap-2 cursor-pointer;
   }
   .paragraph {
     @apply text-[#67737e] max-w-2xl mx-auto text-sm sm:text-base;

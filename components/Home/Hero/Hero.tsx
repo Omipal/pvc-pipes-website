@@ -41,8 +41,8 @@ export default function Hero({ data }: HeroProps) {
       <div className="relative container h-full flex items-center py-10 sm:py-14 lg:py-20">
         <div className="max-w-2xl space-y-4 sm:space-y-6 animate-slide-in-left">
           {/* Featured tag */}
-          <div className="inline-flex items-center gap-2 bg-[rgba(0,163,90,0.2)] backdrop-blur-sm border border-[rgba(0,163,90,0.3)] rounded-full px-3 py-1.5 sm:px-4 sm:py-2">
-            <span className="w-2 h-2 bg-[#00a35a] rounded-full animate-pulse" />
+          <div className="inline-flex items-center gap-2 bg-[rgba(234,226,183,0.2)] backdrop-blur-sm border border-[rgba(0,163,90,0.3)] rounded-full px-3 py-1.5 sm:px-4 sm:py-2">
+            <span className="w-2 h-2 bg-[#ff6100] rounded-full animate-pulse" />
             <span className="text-white text-xs sm:text-sm font-medium">
               {data.badge}
             </span>
@@ -50,9 +50,9 @@ export default function Hero({ data }: HeroProps) {
 
           {/* Main heading */}
           <div className="space-y-1 sm:space-y-2">
-            <h1 className=" text-white leading-tight">
+            <h1 className=" text-[#ff6100] leading-tight">
               {data.heading_prefix}
-              <span className="text-[#00a35a]">{data.heading_highlight}</span>
+              <span className="text-white">{data.heading_highlight}</span>
             </h1>
             <p className="font-display text-xl sm:text-2xl md:text-3xl text-white/90 font-medium">
               {data.sub_heading}
@@ -69,26 +69,18 @@ export default function Hero({ data }: HeroProps) {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 sm:pt-4">
-            {data.links?.map((link) =>
-              link.isButtonLink ? (
-                <button
-                  key={link.id}
-                  onClick={() => router.push(link.href)}
-                  className="group bg-[rgb(0,163,90)] text-white px-8 py-3 flex items-center gap-2"
-                >
-                  {link.label}
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              ) : (
-                <button
-                  key={link.id}
-                  onClick={() => router.push(link.href)}
-                  className="border-2 border-white/30 text-white px-8 py-3"
-                >
-                  {link.label}
-                </button>
-              ),
-            )}
+            {data.links?.map((link) => (
+              <button
+                key={link.id}
+                onClick={() => router.push(link.href)}
+                className={`flex items-center gap-2 
+                  ${link.type === "PRIMARY" ? "btn-primary" : "btn-secondary"}
+                  `}
+              >
+                {link.label}
+                {link.type === "PRIMARY" && <ArrowRight className="w-4 h-4" />}
+              </button>
+            ))}
           </div>
 
           {/* Stats */}
@@ -115,9 +107,9 @@ export default function Hero({ data }: HeroProps) {
         >
           {data.info_card && (
             <div className="bg-[rgba(11,58,96,0.9)] backdrop-blur-sm rounded-sm p-6 max-w-xs border border-white/10">
-              <div className="w-12 h-12 bg-[rgba(0,163,90,0.2)] rounded-full flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-[rgba(234,226,183,0.2)] rounded-full flex items-center justify-center mb-4">
                 {data.info_card.badge_text && (
-                  <span className="text-green-400 text-sm">
+                  <span className="text-white text-sm">
                     {data.info_card.badge_text}
                   </span>
                 )}
@@ -134,7 +126,7 @@ export default function Hero({ data }: HeroProps) {
                     data.info_card?.link?.href &&
                     router.push(data.info_card.link.href)
                   }
-                  className="mt-4 bg-white text-[rgb(11,58,96)] px-4 py-2"
+                  className="btn-orange"
                 >
                   {data.info_card.link.label}
                 </button>

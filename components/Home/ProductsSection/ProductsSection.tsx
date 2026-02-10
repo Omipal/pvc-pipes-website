@@ -10,7 +10,7 @@ export default function ProductsSection({ data }: ProductsSectionProps) {
   const products = data.products;
 
   return (
-    <section className="section-padding bg-white">
+    <section className="section-padding bg-gray-100">
       <div className="container">
         {/* Header */}
         <div className="section-box">
@@ -19,7 +19,7 @@ export default function ProductsSection({ data }: ProductsSectionProps) {
           </h1>
 
           <div className="section-content">
-            <p>
+            <p className="paragraph">
               JM Eagle offers the most comprehensive line of plastic pipes on
               the planet. Whether it's our PVC, Polyethylene or ABS products, JM
               Eagle guarantees the best quality and performance.
@@ -59,10 +59,7 @@ export default function ProductsSection({ data }: ProductsSectionProps) {
         </div>
 
         <div className="flex justify-center mt-8">
-          <Link
-            href="/products"
-            className="px-6 py-3 bg-[rgb(11,58,96)] text-white rounded-lg"
-          >
+          <Link href="/products" className="btn-orange">
             View All Products
           </Link>
         </div>

@@ -38,9 +38,7 @@ const AboutSection = ({ data }: Props) => {
 
           {/* CONTENT */}
           <div>
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              {heading}
-            </h2>
+            <h2>{heading}</h2>
 
             <div className="prose max-w-none text-gray-700 mb-6">
               <ReactMarkdown>{content}</ReactMarkdown>
@@ -50,7 +48,7 @@ const AboutSection = ({ data }: Props) => {
               <a
                 href={link.href}
                 target={link.isExternal ? "_blank" : "_self"}
-                className="btn-green inline-flex items-center gap-2"
+                className="btn-orange inline-flex items-center gap-2"
               >
                 {link.label}
                 <ArrowRight className="w-4 h-4" />

@@ -31,7 +31,7 @@ export default function Power({ data, heading }: PowerProps) {
           )}
 
           {heading?.sub_heading && (
-            <p className="text-accent font-semibold uppercase tracking-widest text-xs sm:text-sm mb-3 sm:mb-4 text-[#00a35a]">
+            <p className="text-accent font-semibold uppercase tracking-widest text-xs sm:text-sm mb-3 sm:mb-4 text-[#ff6100]">
               {heading.sub_heading}
             </p>
           )}

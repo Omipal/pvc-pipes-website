@@ -43,13 +43,13 @@ export default function Article({ data }: Props) {
 
                 <div className="p-5">
                   {/* TITLE */}
-                  <h3 className="text-lg font-semibold mb-1">
+                  <h3 className="text-lg font-semibold mb-1 text-black">
                     {article.title}
                   </h3>
 
                   {/* AUTHOR */}
                   {article.author?.fullName && (
-                    <p className="text-xs text-gray-500 mb-2">
+                    <p className="text-xs text-[#ff6100] mb-2">
                       By {article.author.fullName}
                     </p>
                   )}
@@ -60,7 +60,7 @@ export default function Article({ data }: Props) {
                       {article.contentTags.map((tag) => (
                         <span
                           key={tag.id}
-                          className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded"
+                          className="text-xs bg-[#eae2b7] text-[#ff6100] px-2 py-1 rounded"
                         >
                           {tag.title}
                         </span>
@@ -78,7 +78,7 @@ export default function Article({ data }: Props) {
                   {/* READ MORE */}
                   <Link
                     href={`/article/${article.slug}`}
-                    className="text-green-600 font-medium text-sm"
+                    className="text-[#ff6100] font-medium text-sm"
                   >
                     Read more →
                   </Link>

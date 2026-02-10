@@ -29,9 +29,7 @@ export default function Applications({ data, heading }: ApplicationsProps) {
       <div className="container">
         {/* Header */}
         <div className="section-box">
-          {heading?.heading && (
-            <h2 className="text-[rgb(11,58,96)]">{heading.heading}</h2>
-          )}
+          {heading?.heading && <h2>{heading.heading}</h2>}
 
           {heading?.sub_heading && (
             <p className="text-blue-600 text-xs sm:text-sm uppercase tracking-wide mb-3 sm:mb-4">
@@ -86,8 +84,8 @@ export default function Applications({ data, heading }: ApplicationsProps) {
               const imageUrl = card.image?.url?.startsWith("http")
                 ? card.image.url
                 : card.image?.url
-                ? `${STRAPI_URL}${card.image.url}`
-                : null;
+                  ? `${STRAPI_URL}${card.image.url}`
+                  : null;
 
               return (
                 <SwiperSlide
@@ -115,7 +113,7 @@ export default function Applications({ data, heading }: ApplicationsProps) {
                       </div>
                     </div>
                     <div className="mt-2 sm:mt-3 text-center">
-                      <h3 className="font-semibold text-gray-900 group-hover:text-[#00a35a] transition-colors text-sm sm:text-base">
+                      <h3 className="font-semibold text-gray-900 group-hover:text-[#ff6100] transition-colors text-sm sm:text-base">
                         {card.title}
                       </h3>
                     </div>

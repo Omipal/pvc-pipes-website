@@ -36,17 +36,17 @@ const GuaranteeSection = ({ data }: Props) => {
           <div className="text-white space-y-4 sm:space-y-6">
             {/* Badge */}
             <div className="flex items-center gap-2 sm:gap-3">
-              <Shield className="w-5 h-5 sm:w-6 sm:h-6 text-[#00a35a]" />
-              <span className="text-[#00a35a] font-semibold uppercase tracking-wide text-xs sm:text-sm">
+              <Shield className="w-5 h-5 sm:w-6 sm:h-6 text-[#ff6100]" />
+              <span className="text-[#ff6100] font-semibold uppercase tracking-wide text-xs sm:text-sm">
                 {data.badge_text}
               </span>
             </div>
 
             {/* Heading */}
-            <h2 className="leading-tight text-left lg:text-5xl">
+            <h2 className="leading-tight text-left lg:text-5xl text-white">
               {data.heading}
               <br />
-              <span className="text-[#00a35a]">{data.heading_highlight}</span>
+              <span className="text-[#ff6100]">{data.heading_highlight}</span>
               <br />
               {data.sub_heading}
             </h2>
@@ -55,7 +55,7 @@ const GuaranteeSection = ({ data }: Props) => {
             <ul className="space-y-2 sm:space-y-3">
               {data.list?.map((item, index) => (
                 <li key={index} className="flex items-start gap-2 sm:gap-3">
-                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#00a35a] flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#ff6100] flex-shrink-0 mt-0.5" />
                   <span className="text-white/80 text-sm sm:text-base">
                     {item.text}
                   </span>
@@ -67,7 +67,7 @@ const GuaranteeSection = ({ data }: Props) => {
             {data.link && (
               <button
                 onClick={() => data.link && router.push(data.link.href)}
-                className="btn-green group"
+                className="btn-orange group"
               >
                 <span className="hidden sm:inline">{data.link.label}</span>
                 <span className="sm:hidden text-sm">{data.link.label}</span>
@@ -83,7 +83,7 @@ const GuaranteeSection = ({ data }: Props) => {
                 key={index}
                 className="bg-white/10 backdrop-blur-sm rounded-lg p-4 sm:p-6 text-center border border-white/20 hover:bg-white/15 transition-colors"
               >
-                <Award className="w-8 h-8 sm:w-10 sm:h-10 text-[#00a35a] mx-auto mb-2 sm:mb-3" />
+                <Award className="w-8 h-8 sm:w-10 sm:h-10 text-[#ff6100] mx-auto mb-2 sm:mb-3" />
                 <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
                   {stat.value}
                 </p>

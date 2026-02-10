@@ -178,7 +178,7 @@ export default function Header({ headerData, topnavData }: HeaderProps) {
   /* ================= JSX ================= */
   return (
     <header
-      className={`sticky top-0 z-50 w-full bg-white border-t-[1.5mm] border-t-[rgb(0,150,77)] transition-transform duration-300 ${
+      className={`sticky top-0 z-50 w-full bg-white border-t-[1.5mm] border-t-[#fe6100] transition-transform duration-300 ${
         isHidden ? "-translate-y-full" : "translate-y-0"
       }`}
     >
@@ -291,7 +291,7 @@ export default function Header({ headerData, topnavData }: HeaderProps) {
 
           <button
             onClick={() => router.push(topnavData.cta.href)}
-            className="px-3 sm:px-4 py-2 bg-[#00964d] text-white rounded-md text-sm sm:text-base"
+            className="btn-orange rounded-md"
           >
             {topnavData.cta.label}
           </button>
@@ -322,7 +322,7 @@ export default function Header({ headerData, topnavData }: HeaderProps) {
                   href={item.href}
                   target={item.isExternal ? "_blank" : "_self"}
                   className={`px-2 lg:px-3 py-2 font-medium text-sm lg:text-base ${
-                    isActive(item.href) ? "text-blue-600" : "text-green-800"
+                    isActive(item.href) ? "text-[#ff6100]" : "text-[#1a397d]"
                   }`}
                 >
                   {item.label}
@@ -335,7 +335,7 @@ export default function Header({ headerData, topnavData }: HeaderProps) {
                 onClick={() => {
                   setDesktopCompanyOpen((p) => !p);
                 }}
-                className="flex items-center gap-1 px-2 lg:px-3 py-2 font-medium text-green-800 cursor-pointer text-sm lg:text-base"
+                className="flex items-center gap-1 px-2 lg:px-3 py-2 font-medium text-[#1a397d] cursor-pointer text-sm lg:text-base"
               >
                 Company <ChevronDown className="w-4 h-4" />
               </button>
