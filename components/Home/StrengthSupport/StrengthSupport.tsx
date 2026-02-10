@@ -69,6 +69,11 @@ export default function StrengthSupport({ data, heading }: SupportProps) {
             );
           })}
         </div>
+        <div className="flex justify-center mt-8">
+          <Link href="/strength-support" className="btn-orange">
+            View All Strength Of Support
+          </Link>
+        </div>
       </div>
     </section>
   );

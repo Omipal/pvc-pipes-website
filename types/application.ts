@@ -7,6 +7,11 @@ export type ApplicationCard = {
     url: string;
     alternativeText: string | null;
   };
+  link?: {
+    label?: string;
+    href?: string;
+    isExternal?: boolean;
+  };
 };
 
 export type ApplicationsBlock = {

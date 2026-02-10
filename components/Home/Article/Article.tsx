@@ -87,6 +87,11 @@ export default function Article({ data }: Props) {
             );
           })}
         </div>
+        <div className="flex justify-center mt-8">
+          <Link href="/article" className="btn-orange">
+            View All News
+          </Link>
+        </div>
       </div>
     </section>
   );

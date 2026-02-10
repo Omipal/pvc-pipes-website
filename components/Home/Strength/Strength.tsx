@@ -66,6 +66,11 @@ export default function Strength({ data, heading }: StrengthProps) {
             );
           })}
         </div>
+        <div className="flex justify-center mt-8">
+          <Link href="/strength" className="btn-orange">
+            View All Strength Of Performance
+          </Link>
+        </div>
       </div>
     </section>
   );

@@ -75,6 +75,11 @@ export default function Power({ data, heading }: PowerProps) {
             );
           })}
         </div>
+        <div className="flex justify-center mt-8">
+          <Link href="/power" className="btn-orange">
+            View All Power Of Truth
+          </Link>
+        </div>
       </div>
     </section>
   );

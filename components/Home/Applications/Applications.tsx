@@ -1,5 +1,4 @@
 "use client";
-
 import { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -122,6 +121,11 @@ export default function Applications({ data, heading }: ApplicationsProps) {
               );
             })}
           </Swiper>
+        </div>
+        <div className="flex justify-center mt-8">
+          <Link href="/applications" className="btn-orange">
+            View All Application
+          </Link>
         </div>
       </div>
     </section>
