@@ -16,5 +16,5 @@ export default async function StrengthSupportPage() {
     return null;
   }
 
-  return <StrengthSupport data={supportBlock} />;
+  return <StrengthSupport data={supportBlock} showViewAllButton={false} />;
 }

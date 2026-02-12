@@ -1,12 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FeaturedProductsBlock } from "../../../types/product";
+import { SectionHeadingBlock } from "@/types/section-heading";
+import ReactMarkdown from "react-markdown";
 
 type ProductsSectionProps = {
   data: FeaturedProductsBlock;
+  showViewAllButton?: boolean;
+  heading?: SectionHeadingBlock;
 };
 
-export default function ProductsSection({ data }: ProductsSectionProps) {
+export default function ProductsSection({
+  data,
+  heading,
+  showViewAllButton = true,
+}: ProductsSectionProps) {
   const products = data.products;
 
   return (
@@ -14,17 +22,19 @@ export default function ProductsSection({ data }: ProductsSectionProps) {
       <div className="container">
         {/* Header */}
         <div className="section-box">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold uppercase leading-tight text-[rgb(11,58,96)] mb-3">
-            Products
-          </h1>
+          {heading?.heading && <h2>{heading.heading}</h2>}
 
-          <div className="section-content">
-            <p className="paragraph">
-              JM Eagle offers the most comprehensive line of plastic pipes on
-              the planet. Whether it's our PVC, Polyethylene or ABS products, JM
-              Eagle guarantees the best quality and performance.
+          {heading?.sub_heading && (
+            <p className="text-[#ff6100]] text-xs sm:text-sm uppercase tracking-wide mb-3 sm:mb-4">
+              {heading.sub_heading}
             </p>
-          </div>
+          )}
+
+          {heading?.description && (
+            <div className="paragraph">
+              <ReactMarkdown>{heading.description}</ReactMarkdown>
+            </div>
+          )}
         </div>
 
         {/* Products */}
@@ -49,7 +59,7 @@ export default function ProductsSection({ data }: ProductsSectionProps) {
                 )}
 
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                  <h3 className="text-white font-bold text-center">
+                  <h3 className="text-white font-bold text-center leading-5">
                     {product.name}
                   </h3>
                 </div>
@@ -57,12 +67,13 @@ export default function ProductsSection({ data }: ProductsSectionProps) {
             );
           })}
         </div>
-
-        <div className="flex justify-center mt-8">
-          <Link href="/products" className="btn-orange">
-            View All Products
-          </Link>
-        </div>
+        {showViewAllButton && (
+          <div className="flex justify-center mt-8">
+            <Link href="/products" className="btn-orange">
+              View All Products
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

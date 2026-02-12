@@ -23,10 +23,10 @@ export function OurFocus() {
   return (
     <section className="space-y-8">
       {/* Section Header */}
-      <div className="border-b-2 border-blue-600 pb-4">
-        <h1 className="text-3xl sm:text-4xl font-bold text-blue-900">
+      <div className="border-b-2 border-[#1a397d] pb-4">
+        <h2 className="text-3xl sm:text-4xl font-bold text-[#1a397d]">
           Our Focus
-        </h1>
+        </h2>
       </div>
 
       {/* Description */}

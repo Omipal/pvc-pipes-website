@@ -344,7 +344,7 @@ export default function Header({ headerData, topnavData }: HeaderProps) {
                 <CompanyMenu
                   sections={[
                     {
-                      title: "About",
+                      title: "Company",
                       links: [
                         {
                           label: "Why JM Eagle Pipe & Fittings",
@@ -465,7 +465,7 @@ export default function Header({ headerData, topnavData }: HeaderProps) {
                       target={item.isExternal ? "_blank" : "_self"}
                       onClick={() => setIsOpen(false)}
                       className={`block px-3 py-2 text-base font-medium rounded ${
-                        isActive(item.href) ? "text-blue-600" : "text-gray-700"
+                        isActive(item.href) ? "text-[#ff6100]" : "text-gray-700"
                       } hover:bg-gray-100`}
                     >
                       {item.label}
@@ -481,18 +481,9 @@ export default function Header({ headerData, topnavData }: HeaderProps) {
                     }
                     className="flex items-center justify-between w-full px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-100 rounded cursor-pointer"
                   >
-                    <Link
-                      href="/company"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setIsOpen(false);
-                      }}
-                      className="flex-1"
-                    >
-                      COMPANY
-                    </Link>
+                    <span className="flex-1">COMPANY</span>
                     <ChevronDown
-                      className={`w-5 h-5 transition-transform flex-shrink-0 ${
+                      className={`w-5 h-5 transition-transform ${
                         activeBrowseByLink ? "rotate-180" : ""
                       }`}
                     />
@@ -519,21 +510,6 @@ export default function Header({ headerData, topnavData }: HeaderProps) {
                     </div>
                   )}
                 </div>
-              </div>
-
-              {/* LANGUAGE & COUNTRY SELECTORS */}
-              <div className="border-t border-gray-200 pt-6 space-y-3">
-                <button className="flex items-center justify-between w-full px-3 py-2 text-sm border rounded hover:bg-gray-50">
-                  <span className="flex items-center gap-2">
-                    <span className="text-lg">🇺🇸</span>
-                    United States
-                  </span>
-                  <ChevronDown className="w-4 h-4" />
-                </button>
-                <button className="flex items-center justify-between w-full px-3 py-2 text-sm border rounded hover:bg-gray-50">
-                  <span>EN</span>
-                  <ChevronDown className="w-4 h-4" />
-                </button>
               </div>
             </div>
           </div>

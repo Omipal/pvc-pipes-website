@@ -18,8 +18,10 @@ export default function CategorySidebar({ categories, activeCategory }: Props) {
         <li>
           <Link
             href="/products"
-            className={`block px-3 py-2 rounded ${
-              !activeCategory ? "bg-gray-100 font-semibold" : "hover:bg-gray-50"
+            className={`block px-3 py-2 rounded text-[#1a397d] ${
+              !activeCategory
+                ? "text-[#ff6100] font-semibold"
+                : "hover:text-[#1a397d]"
             }`}
           >
             All Products
@@ -33,8 +35,10 @@ export default function CategorySidebar({ categories, activeCategory }: Props) {
             <li key={cat.id}>
               <Link
                 href={`/products?category=${cat.slug}`}
-                className={`block px-3 py-2 rounded ${
-                  isActive ? "bg-gray-100 font-semibold" : "hover:bg-gray-50"
+                className={`block px-3 py-2 rounded text-[#1a397d]  ${
+                  isActive
+                    ? "text-[#ff6100] font-semibold"
+                    : "hover:text-[#1a397d]"
                 }`}
               >
                 {cat.name}

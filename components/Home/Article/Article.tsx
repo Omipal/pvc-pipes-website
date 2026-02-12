@@ -2,12 +2,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { FeaturedArticlesBlock } from "@/types/featured-articles";
 import { getStrapiImage } from "@/lib/getStrapiImage";
+import { SectionHeadingBlock } from "@/types/section-heading";
+import ReactMarkdown from "react-markdown";
 
 type Props = {
   data: FeaturedArticlesBlock;
+  showViewAllButton?: boolean;
+  heading?: SectionHeadingBlock;
 };
 
-export default function Article({ data }: Props) {
+export default function Article({
+  data,
+  heading,
+  showViewAllButton = true,
+}: Props) {
   const { title, articles } = data;
 
   if (!articles?.length) return null;
@@ -15,8 +23,24 @@ export default function Article({ data }: Props) {
   return (
     <section className="section-padding bg-gray-50">
       <div className="container">
+        {/* Header */}
+        <div className="section-box">
+          {heading?.heading && <h2>{heading.heading}</h2>}
+
+          {heading?.sub_heading && (
+            <p className="text-blue-600 text-xs sm:text-sm uppercase tracking-wide mb-3 sm:mb-4">
+              {heading.sub_heading}
+            </p>
+          )}
+
+          {heading?.description && (
+            <div className="paragraph">
+              <ReactMarkdown>{heading.description}</ReactMarkdown>
+            </div>
+          )}
+        </div>
         {title && (
-          <h2 className="text-3xl font-bold mb-8 text-center">{title}</h2>
+          <h3 className="text-3xl font-bold mb-8 text-center">{title}</h3>
         )}
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -43,9 +67,9 @@ export default function Article({ data }: Props) {
 
                 <div className="p-5">
                   {/* TITLE */}
-                  <h3 className="text-lg font-semibold mb-1 text-black">
+                  <h4 className="text-lg font-semibold mb-1 text-black">
                     {article.title}
-                  </h3>
+                  </h4>
 
                   {/* AUTHOR */}
                   {article.author?.fullName && (
@@ -87,11 +111,13 @@ export default function Article({ data }: Props) {
             );
           })}
         </div>
-        <div className="flex justify-center mt-8">
-          <Link href="/article" className="btn-orange">
-            View All News
-          </Link>
-        </div>
+        {showViewAllButton && (
+          <div className="flex justify-center mt-8">
+            <Link href="/article" className="btn-orange">
+              View All News
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

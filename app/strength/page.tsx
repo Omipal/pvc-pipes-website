@@ -8,7 +8,7 @@ export default async function StrengthPage() {
   const performanceBlock = landingPage.blocks?.find(
     (block): block is ApplicationsBlock =>
       block.__component === "blocks.card-grid" &&
-      block.section_type === "performance"
+      block.section_type === "performance",
   );
 
   // Safety fallback (production safe)
@@ -16,5 +16,5 @@ export default async function StrengthPage() {
     return null;
   }
 
-  return <Strength data={performanceBlock} />;
+  return <Strength data={performanceBlock} showViewAllButton={false} />;
 }

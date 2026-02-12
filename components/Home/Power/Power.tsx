@@ -18,9 +18,14 @@ const icons = [FileText, BookOpen, Newspaper, Video, Download, ExternalLink];
 type PowerProps = {
   data: ApplicationsBlock;
   heading?: SectionHeadingBlock;
+  showViewAllButton?: boolean;
 };
 
-export default function Power({ data, heading }: PowerProps) {
+export default function Power({
+  data,
+  heading,
+  showViewAllButton = true,
+}: PowerProps) {
   return (
     <section className="section-padding bg-[#062a47]">
       <div className="container">
@@ -75,11 +80,13 @@ export default function Power({ data, heading }: PowerProps) {
             );
           })}
         </div>
-        <div className="flex justify-center mt-8">
-          <Link href="/power" className="btn-orange">
-            View All Power Of Truth
-          </Link>
-        </div>
+        {showViewAllButton && (
+          <div className="flex justify-center mt-8">
+            <Link href="/power" className="btn-orange">
+              View All Power Of Truth
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

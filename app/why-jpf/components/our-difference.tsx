@@ -27,7 +27,7 @@ export function OurDifference() {
 
   const prevImage = () => {
     setCurrentImageIndex((prev) =>
-      prev === 0 ? carouselImages.length - 1 : prev - 1
+      prev === 0 ? carouselImages.length - 1 : prev - 1,
     );
   };
 
@@ -35,9 +35,9 @@ export function OurDifference() {
     <section className="space-y-8">
       {/* Section Header */}
       <div className="border-b-2 border-blue-600 pb-4">
-        <h1 className="text-3xl sm:text-4xl font-bold text-blue-900">
+        <h2 className="text-3xl sm:text-4xl font-bold text-[#1a397d]">
           The Westlake Pipe & Fittings Difference
-        </h1>
+        </h2>
       </div>
 
       {/* Main Content */}
@@ -54,9 +54,7 @@ export function OurDifference() {
             customer support teams, our unparalleled service allows you to
             design, specify and install complete projects with confidence.
           </p>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-6 py-2 font-medium transition-colors">
-            Contact Us
-          </button>
+          <button className="btn-orange rounded-full">Contact Us</button>
         </div>
 
         <div className="space-y-4">
@@ -74,7 +72,7 @@ export function OurDifference() {
           <div className="flex gap-3 relative">
             <button
               onClick={prevImage}
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-blue-600 hover:bg-blue-700 text-white rounded-full p-2 transition-colors w-8 h-8 flex items-center justify-center"
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-[#ff6100] hover:bg-[#fcbf49] text-white rounded-full p-2 transition-colors w-8 h-8 flex items-center justify-center cursor-pointer"
               aria-label="Previous image"
             >
               <span>{"<"}</span>
@@ -101,7 +99,7 @@ export function OurDifference() {
 
             <button
               onClick={nextImage}
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-blue-600 hover:bg-blue-700 text-white rounded-full p-2 transition-colors w-8 h-8 flex items-center justify-center"
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-[#ff6100] hover:bg-[#fcbf49] text-white rounded-full p-2 transition-colors w-8 h-8 flex items-center justify-center cursor-pointer"
               aria-label="Next image"
             >
               <span>{">"}</span>

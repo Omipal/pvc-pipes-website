@@ -7,7 +7,8 @@ export default async function PowerPage() {
 
   const powerBlock = landingPage.blocks?.find(
     (block): block is ApplicationsBlock =>
-      block.__component === "blocks.card-grid" && block.section_type === "power"
+      block.__component === "blocks.card-grid" &&
+      block.section_type === "power",
   );
 
   // Safety fallback (production safe)
@@ -15,5 +16,5 @@ export default async function PowerPage() {
     return null;
   }
 
-  return <Power data={powerBlock} />;
+  return <Power data={powerBlock} showViewAllButton={false} />;
 }

@@ -102,12 +102,10 @@ export default function LocationsFromStrapi({ block }: Props) {
 
   return (
     <section className="bg-white py-8 md:py-12">
-      <div className="container max-w-7xl mx-auto px-4">
+      <div className="container">
         {/* HEADER */}
         <div className="mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3">
-            {heading}
-          </h1>
+          <h1 className="text-4xl font-bold text-[#1a397d] mb-3">{heading}</h1>
           {description && (
             <p className="text-lg text-gray-600">{description}</p>
           )}

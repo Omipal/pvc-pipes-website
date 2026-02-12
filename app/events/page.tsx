@@ -69,7 +69,7 @@ export default function EventsPage() {
       {/* Header */}
       <div className="border-b border-border">
         <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-bold text-foreground">Events</h1>
+          <h1 className="text-4xl font-bold text-[#1a397d]">Events</h1>
         </div>
       </div>
 
@@ -77,7 +77,7 @@ export default function EventsPage() {
       <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
         {/* Featured Events */}
         <div className="mb-16">
-          <h2 className="text-2xl font-bold text-foreground mb-8">
+          <h2 className="text-2xl font-bold text-[#1a397d] mb-8">
             Featured Events
           </h2>
           <div className="border-b border-border pb-8"></div>
@@ -85,9 +85,9 @@ export default function EventsPage() {
 
         {/* Past Events */}
         <div>
-          <h2 className="text-2xl font-bold text-foreground mb-8">
+          <h3 className="text-[20px] font-bold text-[#1a397d] mb-8">
             Past Events
-          </h2>
+          </h3>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {events.map((event) => (
@@ -102,7 +102,7 @@ export default function EventsPage() {
                     alt={event.title}
                     className="w-full h-full object-cover"
                   />
-                  <span className="absolute top-3 right-3 px-3 py-1 bg-secondary text-secondary-foreground text-xs font-semibold rounded-full">
+                  <span className="absolute top-3 right-3 px-3 py-1 bg-secondary text-black text-xs font-semibold rounded-full">
                     {event.status}
                   </span>
                 </div>
@@ -110,7 +110,7 @@ export default function EventsPage() {
                 {/* Content */}
                 <div className="p-6">
                   {/* Date */}
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
+                  <div className="flex items-center gap-2 text-sm text-black mb-3">
                     <svg
                       className="w-4 h-4"
                       fill="currentColor"
@@ -130,7 +130,7 @@ export default function EventsPage() {
                     {event.categories.map((category) => (
                       <span
                         key={category}
-                        className="px-2 py-1 bg-muted text-muted-foreground text-xs rounded"
+                        className="px-2 py-1 bg-muted text-black text-xs rounded"
                       >
                         {category}
                       </span>
@@ -138,19 +138,19 @@ export default function EventsPage() {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-lg font-bold text-foreground mb-2">
+                  <h4 className="text-lg font-bold text-[#ff6100] mb-2">
                     {event.title}
-                  </h3>
+                  </h4>
 
                   {/* Description */}
-                  <p className="text-sm text-muted-foreground mb-6 line-clamp-2">
+                  <p className="text-sm text-black mb-6 line-clamp-2">
                     {event.description}
                   </p>
 
                   {/* Link */}
                   <Link
                     href={`/events/${event.id}`}
-                    className="text-primary hover:text-accent font-semibold text-sm inline-flex items-center gap-1"
+                    className="text-black hover:text-[#ff6100] font-semibold text-sm inline-flex items-center gap-1"
                   >
                     Explore Event
                     <svg

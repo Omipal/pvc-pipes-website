@@ -48,7 +48,7 @@ export default async function ProductsPage({
     : allProducts;
 
   return (
-    <main className="section-padding bg-white">
+    <section className="section-padding bg-white">
       <div className="container grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-8">
         {/* LEFT SIDEBAR */}
         <CategorySidebar
@@ -62,8 +62,9 @@ export default async function ProductsPage({
             ...featuredProductsBlock,
             products: filteredProducts,
           }}
+          showViewAllButton={false}
         />
       </div>
-    </main>
+    </section>
   );
 }

@@ -83,8 +83,10 @@ export default async function HomePage() {
      ========================= */
   const applicationsHeading = sectionHeadings?.[0];
   const supportHeading = sectionHeadings?.[1];
-  const performanceHeading = sectionHeadings?.[2];
-  const powerHeading = sectionHeadings?.[3];
+  const productsHeading = sectionHeadings?.[2];
+  const articlesHeading = sectionHeadings?.[3];
+  const performanceHeading = sectionHeadings?.[4];
+  const powerHeading = sectionHeadings?.[5];
 
   return (
     <Home
@@ -100,8 +102,10 @@ export default async function HomePage() {
       services={servicesBlock}
       powerHeading={powerHeading}
       power={powerBlock}
-      featuredArticles={featuredArticlesBlock}
+      productsHeading={productsHeading}
       featuredProducts={featuredProductsBlock}
+      articlesHeading={articlesHeading}
+      featuredArticles={featuredArticlesBlock}
     />
   );
 }

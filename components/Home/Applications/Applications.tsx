@@ -17,9 +17,14 @@ const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL!;
 type ApplicationsProps = {
   data: ApplicationsBlock;
   heading?: SectionHeadingBlock;
+  showViewAllButton?: boolean;
 };
 
-export default function Applications({ data, heading }: ApplicationsProps) {
+export default function Applications({
+  data,
+  heading,
+  showViewAllButton = true,
+}: ApplicationsProps) {
   const prevRef = useRef<HTMLButtonElement | null>(null);
   const nextRef = useRef<HTMLButtonElement | null>(null);
 
@@ -122,11 +127,13 @@ export default function Applications({ data, heading }: ApplicationsProps) {
             })}
           </Swiper>
         </div>
-        <div className="flex justify-center mt-8">
-          <Link href="/applications" className="btn-orange">
-            View All Application
-          </Link>
-        </div>
+        {showViewAllButton && (
+          <div className="flex justify-center mt-8">
+            <Link href="/applications" className="btn-orange">
+              View All Application
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

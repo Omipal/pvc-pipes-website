@@ -16,7 +16,7 @@ export default async function ArticlePage() {
 
   return (
     <main>
-      <Article data={featuredArticlesBlock} />
+      <Article data={featuredArticlesBlock} showViewAllButton={false} />
     </main>
   );
 }

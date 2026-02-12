@@ -73,7 +73,7 @@ export default function Hero({ data }: HeroProps) {
               <button
                 key={link.id}
                 onClick={() => router.push(link.href)}
-                className={`flex items-center gap-2 
+                className={`flex items-center justify-center gap-2 
                   ${link.type === "PRIMARY" ? "btn-primary" : "btn-secondary"}
                   `}
               >

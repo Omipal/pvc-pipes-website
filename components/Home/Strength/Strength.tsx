@@ -18,9 +18,14 @@ const icons = [FileText, ClipboardList, Calculator, Award, BookOpen, Scale];
 type StrengthProps = {
   data: ApplicationsBlock;
   heading?: SectionHeadingBlock;
+  showViewAllButton?: boolean;
 };
 
-export default function Strength({ data, heading }: StrengthProps) {
+export default function Strength({
+  data,
+  heading,
+  showViewAllButton = true,
+}: StrengthProps) {
   return (
     <section className="section-padding bg-gray-100">
       <div className="container">
@@ -66,11 +71,13 @@ export default function Strength({ data, heading }: StrengthProps) {
             );
           })}
         </div>
-        <div className="flex justify-center mt-8">
-          <Link href="/strength" className="btn-orange">
-            View All Strength Of Performance
-          </Link>
-        </div>
+        {showViewAllButton && (
+          <div className="flex justify-center mt-8">
+            <Link href="/strength" className="btn-orange">
+              View All Strength Of Performance
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

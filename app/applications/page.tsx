@@ -19,7 +19,7 @@ export default async function ApplicationsPage() {
       <BreadcrumbSetter
         items={[{ label: "Home", href: "/" }, { label: "Applications" }]}
       />
-      <Applications data={applicationsBlock} />
+      <Applications data={applicationsBlock} showViewAllButton={false} />
     </>
   );
 }

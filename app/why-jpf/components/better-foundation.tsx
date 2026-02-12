@@ -2,8 +2,8 @@ export function BetterFoundation() {
   return (
     <section className="space-y-8">
       {/* Section Header */}
-      <div className="border-b-2 border-blue-600 pb-4">
-        <h1 className="text-3xl sm:text-4xl font-bold text-blue-900">
+      <div className="border-b-2 border-[#1a397d] pb-4">
+        <h1 className="text-3xl sm:text-4xl font-bold text-[#1a397d]">
           Creating A Better Foundation™
         </h1>
       </div>
@@ -11,7 +11,7 @@ export function BetterFoundation() {
       {/* Content Grid */}
       <div className="grid md:grid-cols-2 gap-8 items-center">
         <div className="space-y-4">
-          <h2 className="text-2xl font-bold text-blue-900">
+          <h2 className="text-2xl font-bold text-[#1a397d]">
             Impacting Communities Across North America
           </h2>
           <p className="text-gray-700 leading-relaxed">
@@ -22,7 +22,7 @@ export function BetterFoundation() {
             highlight the PVC pipe and fittings systems that make up A Better
             Foundation™, the foundation that connects us all.
           </p>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-8 py-2 font-medium transition-colors">
+          <button className="btn-orange rounded-full">
             Explore our A Better Foundation™ Projects
           </button>
         </div>

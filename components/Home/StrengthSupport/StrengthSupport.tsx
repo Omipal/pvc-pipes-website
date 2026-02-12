@@ -18,9 +18,14 @@ const icons = [Award, FileCheck, Users, Wrench, GraduationCap, HeadphonesIcon];
 type SupportProps = {
   data: ApplicationsBlock;
   heading?: SectionHeadingBlock;
+  showViewAllButton?: boolean;
 };
 
-export default function StrengthSupport({ data, heading }: SupportProps) {
+export default function StrengthSupport({
+  data,
+  heading,
+  showViewAllButton = true,
+}: SupportProps) {
   return (
     <section className="section-padding bg-white">
       <div className="container">
@@ -69,11 +74,13 @@ export default function StrengthSupport({ data, heading }: SupportProps) {
             );
           })}
         </div>
-        <div className="flex justify-center mt-8">
-          <Link href="/strength-support" className="btn-orange">
-            View All Strength Of Support
-          </Link>
-        </div>
+        {showViewAllButton && (
+          <div className="flex justify-center mt-8">
+            <Link href="/strength-support" className="btn-orange">
+              View All Strength Of Support
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

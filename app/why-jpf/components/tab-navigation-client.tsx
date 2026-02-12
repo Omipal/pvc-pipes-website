@@ -19,7 +19,7 @@ export function TabNavigationClient({ tabs }: TabNavigationClientProps) {
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.3 },
     );
 
     tabs.forEach((tab) => {
@@ -40,17 +40,17 @@ export function TabNavigationClient({ tabs }: TabNavigationClientProps) {
   return (
     <nav
       ref={navRef}
-      className="sticky top-0 z-[1000] bg-white border-b border-gray-200 shadow-sm"
+      className=" relative lg:sticky lg:top-0 lg:z-[1000] bg-white border-b border-gray-200 shadow-sm"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex gap-8 sm:gap-12">
+        <div className="flex flex-col sm:flex-row gap-8 sm:gap-12">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => handleTabClick(tab.id)}
               className={`py-4 px-1 border-b-2 font-medium text-sm transition-all ${
                 activeTab === tab.id
-                  ? "border-blue-600 text-blue-600"
+                  ? "border-[#1a397d] text-[#1a397d]"
                   : "border-transparent text-gray-600 hover:text-gray-900 hover:border-gray-300"
               }`}
             >
